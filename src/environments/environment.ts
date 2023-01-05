@@ -2,6 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {secrets} from "../../secrets";
+
 export const environment = {
   production: false,
   withCredentials: true,
@@ -9,6 +11,15 @@ export const environment = {
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': 'http://localhost:4200',
+  },
+  firebaseConfigAuth: {
+    apiKey: secrets["auth-api-key"],
+    authDomain: "revature-p3.firebaseapp.com",
+    projectId: "revature-p3",
+    storageBucket: "revature-p3.appspot.com",
+    messagingSenderId: "820220163459",
+    appId: "1:820220163459:web:eef72f7fca6a675e0632b6",
+    measurementId: "G-QWDV21TNXQ"
   },
 };
 

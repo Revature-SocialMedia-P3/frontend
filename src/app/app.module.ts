@@ -16,8 +16,6 @@ import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AngularFireModule} from "@angular/fire/compat";
-import {environment} from "../environments/environment";
-
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
@@ -51,5 +49,5 @@ initializeApp(environment.firebaseConfigNotification);
 export class AppModule {
   constructor() {
     FirebaseTSApp.init(environment.firebaseConfigNotification);
-  }  
+  }
  }

@@ -1,19 +1,26 @@
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="box">
-    <mat-card-header>
-      <mat-card-title>Log in</mat-card-title>
-    </mat-card-header>
-    <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
-      <mat-card-content>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Email" formControlName="email">
-        </mat-form-field>
-        <mat-form-field class="full-width">
-          <input matInput placeholder="Password" type="password" formControlName="password">
-        </mat-form-field>
-      </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block" type="submit">Log in</button>
-    </form>
-    <a class="login-rerout-link" [routerLink]="['/register']">Don't have an account?</a>
-  </mat-card>
+<div class="row justify-content-center g-3 mt-5">
+  <div class="col-xl-4">
+    <div class="card">
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <h5 class="card-title mb-3 text-center">Log In</h5>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input id="email" type="email" placeholder="email" name="Email" class="form-control" formControlName="email">
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" placeholder="Password" name="password" class="form-control" formControlName="password">
+          </div>
+          <div class="mb-3">
+            <button type="login" class="btn btn-outline-success me-2">Log In</button>
+            <button type="reset" class="btn btn-outline-warning">Reset</button>
+          </div>
+          <div>
+            <a class="card-link" [routerLink]="['/register']">Don't have an account?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

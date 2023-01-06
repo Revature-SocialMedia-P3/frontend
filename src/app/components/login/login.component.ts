@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import {LoginCredential} from "../../models/login-credential";
+import {AuthObj} from "../../models/auth-obj";
+import User from "../../models/User";
 
 @Component({
   selector: 'app-login',
@@ -10,26 +13,39 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm = new FormGroup({
-    email: new FormControl(''),
-    password: new FormControl('')
+  loginForm = this.formBuilder.group({
+    email: [""],
+    password: [""],
   })
-  
 
-  constructor(private authService: AuthService, private router: Router) { }
+
+  constructor(private authService: AuthService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.authService.changeInUser.subscribe((user: User | null) => {
+      if (user) {
+        this.router.navigate(['post-feed'])
+      }
+    })
   }
-  
-  onSubmit(e: any): void {
-    e.preventDefault()
-    this.authService.login(this.loginForm.value.email || "", this.loginForm.value.password || "")
-      .subscribe(
-        (response) => {
-          this.authService.currentUser = response
-          this.router.navigate(['post-feed'])
-        }
-      )
+
+  onSubmit(): void {
+    let formValues = this.loginForm.value;
+
+    if (
+      formValues.email &&
+      formValues.password &&
+      this.loginForm.valid
+    ) {
+      const loginCredential: LoginCredential = {
+        email: formValues.email,
+        password: formValues.password
+      }
+
+      this.authService.login(loginCredential)
+    }
+
+
   }
 
   register(): void {

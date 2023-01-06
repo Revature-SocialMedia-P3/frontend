@@ -48,7 +48,7 @@ export class PostFeedPageComponent implements OnInit {
           0,
           this.postForm.value.text || '',
           this.postForm.value.imageUrl || '',
-          this.authService.currentUser,
+          this.authService.currentUser!,
           [],
           'Top'
         )

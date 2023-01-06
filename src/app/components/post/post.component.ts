@@ -34,7 +34,7 @@ export class PostComponent implements OnInit {
       0,
       this.commentForm.value.text || '',
       '',
-      this.authService.currentUser,
+      this.authService.currentUser!,
       [],
       'Comment'
     );

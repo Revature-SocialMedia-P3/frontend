@@ -13,15 +13,6 @@ export const environment = {
     'Access-Control-Allow-Origin': '*',
     "Authorization": <string>localStorage.getItem("Authorization"),
   },
-  firebaseConfigAuth: {
-    apiKey: secrets["auth-api-key"],
-    authDomain: "revature-p3.firebaseapp.com",
-    projectId: "revature-p3",
-    storageBucket: "revature-p3.appspot.com",
-    messagingSenderId: "820220163459",
-    appId: "1:820220163459:web:eef72f7fca6a675e0632b6",
-    measurementId: "G-QWDV21TNXQ"
-  },
   firebaseConfigNotification: {
     apiKey: "AIzaSyDw5x74A-5a15CS2eVm1D3cgUAbldoklOg",
     authDomain: "highscoreio.firebaseapp.com",

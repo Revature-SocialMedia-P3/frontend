@@ -18,6 +18,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
+import { initializeApp } from 'firebase/app';
+
+initializeApp(environment.firebaseConfigNotification);
 
 @NgModule({
   declarations: [

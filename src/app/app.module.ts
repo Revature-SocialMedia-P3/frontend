@@ -41,7 +41,7 @@ initializeApp(environment.firebaseConfigNotification);
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    AngularFireModule.initializeApp(environment.firebaseConfigAuth),
+    AngularFireModule.initializeApp(environment.firebaseConfigNotification),
   ],
   providers: [],
   bootstrap: [AppComponent]

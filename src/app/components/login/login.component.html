@@ -1,9 +1,12 @@
-<div class="row justify-content-center g-3 mt-5">
+<div *ngIf="!isSubmitted" class="row justify-content-center g-3 mt-5">
   <div class="col-xl-4">
     <div class="card">
       <div class="card-body">
         <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
           <h5 class="card-title mb-3 text-center">Log In</h5>
+          <p *ngIf="errorMessage" class="text-danger">
+            {{errorMessage}}
+          </p>
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input id="email" type="email" placeholder="email" name="Email" class="form-control" formControlName="email">
@@ -20,7 +23,12 @@
             <a class="card-link" [routerLink]="['/register']">Don't have an account?</a>
           </div>
         </form>
+        <a (click)="googleAuth()">google auth</a>
+        <a (click)="facebookAuth()">facebook auth</a>
       </div>
     </div>
   </div>
+</div>
+<div *ngIf="isSubmitted" class="d-flex justify-content-center m-5">
+  <div class="spinner-border" role="status"></div>
 </div>

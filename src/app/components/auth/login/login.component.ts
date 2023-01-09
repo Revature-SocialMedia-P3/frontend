@@ -69,10 +69,6 @@ export class LoginComponent implements OnInit {
 
   }
 
-  register(): void {
-    this.router.navigate(['register']);
-  }
-
   OAuth(providerString: string) {
     this.isSubmitted = true;
     let provider: any;

@@ -14,9 +14,9 @@ phases:
       - echo build process started now
 #      - ng test --no-watch
       - ng build --configuration=production
-#  post_build:
-#    commands:
-#      - echo build process finished, we should upload to S3 now
-#      - cd dist/$APP_NAME
-#      - ls -la
-#      - aws s3 sync . s3://highscoreio-frontend-bucket/highscoreio-frontend/ --delete
+  post_build:
+    commands:
+      - echo build process finished, we should upload to S3 now
+      - cd dist/$APP_NAME
+      - ls -la
+      - aws s3 sync . s3://highscoreio-frontend-bucket/highscoreio-frontend/BuildArtif/ --delete

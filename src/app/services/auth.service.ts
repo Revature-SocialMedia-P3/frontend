@@ -1,12 +1,12 @@
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, Subject, timeout} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import User from '../models/User';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {LoginCredential} from "../models/login-credential";
-import {AuthObj} from "../models/auth-obj";
 import {Router} from "@angular/router";
+import {generateUsername} from "unique-username-generator";
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +46,31 @@ export class AuthService {
   setCurrentUser(user: User) {
     this.currentUser = user;
     this.changeInUser.next(this.currentUser);
+  }
+
+  getUser(user: User): Observable<any> {
+    return this.http.post<any>(`${this.authUrl}/get-user`, user, {headers: environment.headers, withCredentials: environment.withCredentials});
+  }
+
+  backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {
+    data = data.user.multiFactor.user;
+
+    let token: string = "Bearer " + data.accessToken;
+    localStorage.setItem("Authorization", token);
+
+    let user: User = {
+      email: data.email,
+      username:username || generateUsername("_",0, 255)
+    }
+
+    this.getUser(user).subscribe({
+        next: (data : any) => {
+          this.setCurrentUser(data as User);
+          onSuccess();
+        }, error: (error: any) =>{
+          onError();
+        }
+      }
+    );
   }
 }

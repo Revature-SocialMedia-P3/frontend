@@ -17,14 +17,15 @@
           </div>
           <div class="mb-3">
             <button type="login" class="btn btn-outline-success me-2">Log In</button>
-            <button type="reset" class="btn btn-outline-warning">Reset</button>
+            <button type="reset" class="btn btn-outline-warning me-2">Reset</button>
+            <a class="mx-2" (click)="OAuth('google')"><i class="bi bi-google"></i></a>
+            <a class="mx-2" (click)="OAuth('facebook')"><i class="bi bi-facebook"></i></a>
+            <a class="mx-2" (click)="OAuth('github')"><i class="bi bi-github"></i></a>
           </div>
           <div>
             <a class="card-link" [routerLink]="['/register']">Don't have an account?</a>
           </div>
         </form>
-        <a (click)="googleAuth()">google auth</a>
-        <a (click)="facebookAuth()">facebook auth</a>
       </div>
     </div>
   </div>

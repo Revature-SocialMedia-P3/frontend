@@ -20,3 +20,4 @@ phases:
       - cd dist/$APP_NAME
       - ls -la
       - aws s3 sync . s3://highscoreio-frontend-bucket/highscoreio-frontend/BuildArtif/ --delete
+      -

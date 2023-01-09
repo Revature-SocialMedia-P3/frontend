@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Input,OnInit } from '@angular/core';
+import { LikepostserviceService } from 'src/app/likepostservice.service';
 
 @Component({
   selector: 'app-likepost',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./likepost.component.css']
 })
 export class LikepostComponent {
+ngoninit(){}
+  constructor(private LikepostService : LikepostserviceService){
 
+  }
+addLikeToPost(){
+  this.LikepostService.increaseCount();
+}
+removeLikeFromPost(){
+  this.LikepostService.decreaseCount();
+}
 }

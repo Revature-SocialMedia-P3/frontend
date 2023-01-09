@@ -15,7 +15,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserInitialsPipe } from './pipes/user-initials.pipe';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LikepostComponent } from './likepost/likepost.component';
+import { LikepostComponent } from './components/likepost/likepost.component';
 
 @NgModule({
   declarations: [

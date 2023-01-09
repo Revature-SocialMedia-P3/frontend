@@ -35,3 +35,7 @@ body {
 .black-text {
   --text-color: black;
 }
+
+.alt-bg {
+  background: var(--contrast-bg);
+}

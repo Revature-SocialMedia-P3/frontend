@@ -17,12 +17,15 @@ export class AuthService {
   currentUser: User | null = null;
   changeInUser: Subject<User | null> = new BehaviorSubject(this.currentUser);
 
-  constructor(private http: HttpClient, private angularFireAuth: AngularFireAuth, private router: Router) {
+  constructor(
+    private http: HttpClient,
+    private angularFireAuth: AngularFireAuth,
+    private router: Router
+  ) {
     let userString: string | null = localStorage.getItem("User");
 
     if (userString) {
-      this.currentUser = JSON.parse(userString);
-      this.changeInUser.next(this.currentUser);
+      this.setCurrentUser(JSON.parse(userString));
     } else {
       this.router.navigate(["login"])
     }

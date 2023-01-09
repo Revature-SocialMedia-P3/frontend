@@ -19,6 +19,7 @@ import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
+import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
 initializeApp(environment.firebaseConfigNotification);
 
@@ -32,6 +33,7 @@ initializeApp(environment.firebaseConfigNotification);
     CommentComponent,
     UserCardComponent,
     NavbarComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

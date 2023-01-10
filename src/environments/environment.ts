@@ -2,14 +2,27 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import {secrets} from "../../secrets";
+
 export const environment = {
   production: false,
   withCredentials: true,
   baseUrl: "http://localhost:8080",
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'http://localhost:4200',
+    'Access-Control-Allow-Origin': '*',
+    "Authorization": <string>localStorage.getItem("Authorization"),
   },
+  firebaseConfigNotification: {
+    apiKey: "AIzaSyDw5x74A-5a15CS2eVm1D3cgUAbldoklOg",
+    authDomain: "highscoreio.firebaseapp.com",
+    projectId: "highscoreio",
+    storageBucket: "highscoreio.appspot.com",
+    messagingSenderId: "117107557485",
+    appId: "1:117107557485:web:13019bbac818470c5d6b64",
+    measurementId: "G-HCVFP0MHCH",
+    vapidKey: "BI1RoYZ88s_GwCUr_NvEeW7StgIVzpe0G2HxOFCubWBQM3u7N_VfyLubHWfMHQuBtXw2_kCzzLi7m7eyG9wmrmw"
+  }
 };
 
 /*

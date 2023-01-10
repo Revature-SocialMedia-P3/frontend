@@ -14,7 +14,6 @@ import { PostComponent } from './components/post/post.component';
 import { CommentComponent } from './components/comment/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { SplashComponent } from './components/splash/splash.component';
 import {AngularFireModule} from "@angular/fire/compat";
 import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
@@ -34,7 +33,6 @@ initializeApp(environment.firebaseConfigNotification);
     CommentComponent,
     UserCardComponent,
     NavbarComponent,
-    SplashComponent,
     ResetPasswordComponent,
   ],
   imports: [

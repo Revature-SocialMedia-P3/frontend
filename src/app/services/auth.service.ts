@@ -61,9 +61,17 @@ export class AuthService {
     let token: string = "Bearer " + data.accessToken;
     localStorage.setItem("Authorization", token);
 
-    let user: User = {
-      email: data.email,
-      username:username || generateUsername("_",0, 255)
+    let user!: User;
+    if (username) {
+      user = {
+        email: data.email,
+        username:username
+      }
+    } else {
+      user = {
+        email: data.email,
+        username: generateUsername("_",0, 255)
+      }
     }
 
     this.getUser(user).subscribe({

@@ -11,7 +11,7 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 
 export class AppComponent implements OnInit {
-title = 'frontend';
+  title = 'frontend';
   message:any = null;
   constructor() {}
   ngOnInit(): void {
@@ -21,7 +21,7 @@ title = 'frontend';
   }
  /*requestPermission() {
     const messaging = getMessaging();
-    getToken(messaging, 
+    getToken(messaging,
      { vapidKey: environment.firebaseConfigNotification.vapidKey}).then(
        (currentToken) => {
          if (currentToken) {

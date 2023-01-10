@@ -57,6 +57,7 @@ export class RegisterComponent implements OnInit {
 
       this.angularFireAuth.createUserWithEmailAndPassword(registration.email, registration.password!).then(
         (data: any) => {
+          console.log(data)
           this.authService.backendLogin(data, () => {this.isSubmitted = false;}, ()=> {this.isSubmitted = false;
             this.errorMessage = "Failed to register. Please try again.";}, registration.username)
         }).catch((error: any) => {

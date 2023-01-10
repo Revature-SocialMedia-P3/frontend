@@ -21,6 +21,7 @@ import { initializeApp } from 'firebase/app';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 
+
 initializeApp(environment.firebaseConfigNotification);
 
 @NgModule({
@@ -34,6 +35,7 @@ initializeApp(environment.firebaseConfigNotification);
     UserCardComponent,
     NavbarComponent,
     ResetPasswordComponent,
+   
   ],
   imports: [
     BrowserModule,

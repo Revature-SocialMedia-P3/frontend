@@ -7,15 +7,19 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
 export class AppComponent implements OnInit {
 title = 'frontend';
   message:any = null;
   constructor() {}
   ngOnInit(): void {
-    this.requestPermission();
-    this.listen();
+    
+    /*this.requestPermission();
+    this.listen(); */
   }
-  requestPermission() {
+ /*requestPermission() {
     const messaging = getMessaging();
     getToken(messaging, 
      { vapidKey: environment.firebaseConfigNotification.vapidKey}).then(
@@ -36,5 +40,5 @@ title = 'frontend';
       console.log('Message received. ', payload);
       this.message=payload;
     });
-  }
+  } */
 }

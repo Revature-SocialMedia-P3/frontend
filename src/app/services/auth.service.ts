@@ -31,19 +31,11 @@ export class AuthService {
     }
   }
 
-  login(loginCredential: LoginCredential): Observable<any> {
-        return this.http.post<any>(`${this.authUrl}/login`, loginCredential, {headers: environment.headers, withCredentials: environment.withCredentials});
-  }
-
   logout(): void{
     localStorage.removeItem("Authorization");
     localStorage.removeItem('User')
     this.currentUser = null;
     this.changeInUser.next(null);
-  }
-
-  register(user: User): Observable<any> {
-        return this.http.post<any>(`${this.authUrl}/register`, user, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
   setCurrentUser(user: User) {
@@ -55,7 +47,7 @@ export class AuthService {
     return this.http.post<any>(`${this.authUrl}/get-user`, user, {headers: environment.headers, withCredentials: environment.withCredentials});
   }
 
-  backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {
+  async backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {
     data = data.user.multiFactor.user;
 
     let token: string = "Bearer " + data.accessToken;

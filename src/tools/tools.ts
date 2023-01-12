@@ -1,5 +1,7 @@
 import User from "../app/models/User";
 import Post from "../app/models/Post";
+import {LoginCredential} from "../app/models/login-credential";
+import {defer} from "rxjs";
 
 
 export const VALID_USER: User = {
@@ -27,3 +29,19 @@ export const VALID_POST_2: Post = {
 }
 
 export const VALID_POST_ARRAY: Post[] = [VALID_POST_1, VALID_POST_2]
+
+export const VALID_LOGIN_CREDENTIAL: LoginCredential = {
+  email: VALID_USER.email,
+  password: "validPassword"}
+
+export function asyncData<T>(data: T) {
+  return defer(() => {
+    return Promise.resolve(data);
+  })
+}
+
+export function asyncDataFailure<T>(data: T) {
+  return defer(() => {
+    return Promise.reject(data);
+  })
+}

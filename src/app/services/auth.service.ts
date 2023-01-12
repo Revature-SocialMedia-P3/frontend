@@ -44,7 +44,9 @@ export class AuthService {
   }
 
   getUser(user: User): Observable<any> {
-    return this.http.post<any>(`${this.authUrl}/get-user`, user, {headers: environment.headers, withCredentials: environment.withCredentials});
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.post<any>(`${this.authUrl}/get-user`, user, {headers: headers, withCredentials: environment.withCredentials});
   }
 
   async backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {

@@ -11,7 +11,6 @@ export const environment = {
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-    "Authorization": <string>localStorage.getItem("Authorization"),
   },
   firebaseConfigNotification: {
     apiKey: "AIzaSyDw5x74A-5a15CS2eVm1D3cgUAbldoklOg",

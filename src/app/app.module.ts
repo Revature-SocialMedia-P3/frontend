@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { SplashComponent } from './components/splash/splash.component';
 
 initializeApp(environment.firebaseConfigNotification);
 
@@ -34,6 +35,7 @@ initializeApp(environment.firebaseConfigNotification);
     UserCardComponent,
     NavbarComponent,
     ResetPasswordComponent,
+    SplashComponent,
   ],
   imports: [
     BrowserModule,

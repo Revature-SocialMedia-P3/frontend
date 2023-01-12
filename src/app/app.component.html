@@ -7,6 +7,6 @@
   No Message Arrived
 </div>
 <div>
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="user"></app-navbar>
   <router-outlet></router-outlet>
 </div>

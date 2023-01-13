@@ -49,6 +49,12 @@ export class AuthService {
     return this.http.post<any>(`${this.authUrl}/get-user`, user, {headers: headers, withCredentials: environment.withCredentials});
   }
 
+  getCurrentUser(): User | null{
+    return this.currentUser;
+  }
+
+
+
   async backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {
     data = data.user.multiFactor.user;
 

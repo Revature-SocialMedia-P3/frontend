@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {AuthService} from "./services/auth.service";
+import User from "./models/User";
+import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-root',
@@ -10,11 +13,19 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 export class AppComponent implements OnInit {
   title = 'frontend';
   message:any = null;
-  constructor() {}
+  user? : User | null;
+  constructor(private authService : AuthService) {}
   ngOnInit(): void {
     this.requestPermission();
     this.listen();
+    this.authService.changeInUser.subscribe({
+      next: (data : User | null) => {
+        this.user = data
+      }
+    });
   }
+
+
   requestPermission() {
     const messaging = getMessaging();
     getToken(messaging,

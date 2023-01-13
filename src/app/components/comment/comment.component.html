@@ -1,22 +1,10 @@
-<p>
-    {{inputComment.text}}
-</p>
-<div class="comment-reply" align="right">
-    <div class="comment-reply-text" (click)="toggleReplyToComment()">
-        reply
+<div class="" [formGroup]="commentForm">
+  <div class="form-group">
+    <label for="comment">Create New Comment:</label>
+    <textarea class="form-control textin" rows="5" placeholder="Enter text here..." id="comment" formControlName="content"></textarea>
+    <div class="d-grid d-md-flex justify-content-md-end">
+      <button class="btn btn-success mt-2" type="button" (click)="onSubmit()" id="button-addon2">Create Comment</button>
     </div>
-    <form class="form" *ngIf="replyToComment" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
-        <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Make a Post</mat-label>
-            <textarea matInput autofocus formControlName="text"></textarea>
-        </mat-form-field>
-        <div align="end">
-            <button mat-raised-button color="warn" (click)="toggleReplyToComment()">Cancel</button>
-            <button mat-raised-button color="primary" type="submit">Post</button>
-        </div>
-    </form>
+  </div>
 </div>
-<div *ngFor="let comment of inputComment.comments" class="comment-container">
-    <mat-divider></mat-divider>
-    <app-comment [comment]="comment"></app-comment>
-</div>
+

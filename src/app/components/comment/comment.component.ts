@@ -1,51 +1,56 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import Post from 'src/app/models/Post';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Post from "../../models/Post";
+import User from "../../models/User";
+
 
 @Component({
-  selector: 'app-comment',
-  templateUrl: './comment.component.html',
-  styleUrls: ['./comment.component.css'],
+  selector: 'app-forum-comment',
+  templateUrl: './forum-comment.component.html',
+  styleUrls: ['./forum-comment.component.css']
 })
 export class CommentComponent implements OnInit {
+
+  content = new FormControl("", Validators.compose([Validators.required, Validators.maxLength(255)]));
+
   commentForm = new FormGroup({
-    text: new FormControl(''),
-  });
+    content : this.content
+  })
 
-  @Input('comment') inputComment: Post;
-  replyToComment: boolean = false;
+  @Input()
+  user? : User;
 
-  constructor(
-    private postService: PostService,
-    private authService: AuthService
-  ) {}
+  @Input()
+  selectedPost! : Post;
 
-  ngOnInit(): void {}
+  @Output()
+  commentEvent : EventEmitter<Comment> = new EventEmitter<Comment>()
 
-  toggleReplyToComment = () => {
-    this.replyToComment = !this.replyToComment;
-  };
+  constructor() { }
 
-  submitReply = (e: any) => {
-    e.preventDefault();
-    let newComment = new Post(
-      0,
-      this.commentForm.value.text || '',
-      '',
-      this.authService.currentUser!,
-      [],
-      'Reply'
-    );
-    this.postService
-      .upsertPost({
-        ...this.inputComment,
-        comments: [...this.inputComment.comments, newComment],
-      })
-      .subscribe((response) => {
-        this.inputComment = response;
-        this.toggleReplyToComment();
-      });
-  };
+  ngOnInit(): void {
+  }
+
+  onSubmit(){
+
+    const commentValues = this.commentForm.value;
+
+    if (
+      this.user &&
+      commentValues.content &&
+      this.selectedPost.id !== undefined
+    ){
+
+
+      const forumComment : Comment = {
+        commenter : this.user,
+        content : commentValues.content,
+        date : new Date(),
+        postId : this.selectedPost.id
+      }
+
+      this.commentEvent.emit(forumComment);
+      this.commentForm.reset()
+    }
+  }
 }

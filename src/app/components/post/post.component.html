@@ -1,31 +1,14 @@
-<div class="post-card">
-    <div>
-        <div>
-            <div mat-card-avatar class="header-image"></div>
-            <mat-card-title>{{post.author.username}}</mat-card-title>
-            <mat-card-subtitle>{{post.author.email}}</mat-card-subtitle>
-        </div>
-        <img mat-card-image *ngIf="post.imageUrl" src="{{ post.imageUrl }}" alt="Post Image">
-        <div>
-            <p>
-                {{post.text}}
-            </p>
-            <div *ngFor="let comment of post.comments" class="comment-container">
-                <app-comment [comment]="comment"></app-comment>
-            </div>
-        </div>
-        <div align="end">
-            <button mat-raised-button color="primary" (click)="toggleReplyToPost()">Reply</button>
-        </div>
-        <form class="form" *ngIf="replyToPost" [formGroup]="commentForm" (ngSubmit)="submitReply($event)">
-            <div class="full-width" appearance="fill">
-                <div>Make a Post</div>
-                <textarea matInput autofocus formControlName="text"></textarea>
-            </div>
-            <div align="end">
-                <button mat-raised-button color="warn" (click)="toggleReplyToPost()">Cancel</button>
-                <button mat-raised-button color="primary" type="submit">Post</button>
-            </div>
-        </form>
+<div class="form-group" [formGroup]="postForm">
+  <div class="col-md-4">
+    <label class="form-label" for="topic">Topic: </label>
+    <input id="topic" class="form-control" type="text" formControlName="topic">
+  </div>
+  <div class="">
+    <label for="comment">Create New Post: </label>
+    <textarea id="content" class="form-control" rows="5" placeholder="Enter text here..." id="comment" formControlName="content"></textarea>
+    <div class="d-grid d-md-flex justify-content-md-end">
+      <button class="btn btn-success mt-2" type="button" (click)="onSubmit()" id="button-addon2">Create Post</button>
     </div>
+  </div>
 </div>
+

@@ -2,6 +2,7 @@ import User from "../app/models/User";
 import Post from "../app/models/Post";
 import {LoginCredential} from "../app/models/login-credential";
 import {defer} from "rxjs";
+import {environment} from "../environments/environment";
 
 
 export const VALID_USER: User = {
@@ -16,7 +17,8 @@ export const VALID_POST_1: Post = {
   id: 1,
   imageUrl: "",
   postType: "",
-  text: "sample text"
+  text: "sample text",
+  date: new Date()
 }
 
 export const VALID_POST_2: Post = {
@@ -25,7 +27,8 @@ export const VALID_POST_2: Post = {
   id: 2,
   imageUrl: "",
   postType: "",
-  text: "sample text again"
+  text: "sample text again",
+  date: new Date()
 }
 
 export const VALID_POST_ARRAY: Post[] = [VALID_POST_1, VALID_POST_2]
@@ -44,4 +47,10 @@ export function asyncDataFailure<T>(data: T) {
   return defer(() => {
     return Promise.reject(data);
   })
+}
+
+export function setHttpAuth() : any {
+  let headers: any = environment.headers;
+  headers["Authorization"]= <string>localStorage.getItem("Authorization");
+  return headers;
 }

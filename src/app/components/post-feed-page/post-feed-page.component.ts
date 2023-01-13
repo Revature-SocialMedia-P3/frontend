@@ -1,61 +1,93 @@
-import {
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import Post from 'src/app/models/Post';
-import User from 'src/app/models/User';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
+import { Component, OnInit } from '@angular/core';
+
+import {Observable, tap} from "rxjs";
+import Post from "../../models/Post";
+import {PostService} from "../../services/post.service";
+import {AuthService} from "../../services/auth.service";
+import User from "../../models/User";
 
 @Component({
-  selector: 'app-post-feed-page',
-  templateUrl: './post-feed-page.component.html',
-  styleUrls: ['./post-feed-page.component.css'],
+  selector: 'app-forum',
+  templateUrl: './forum.component.html',
+  styleUrls: ['./forum.component.css'],
 })
 export class PostFeedPageComponent implements OnInit {
-  postForm = new FormGroup({
-    text: new FormControl(''),
-    imageUrl: new FormControl(''),
-  });
-
-  posts: Post[] = [];
-  createPost: boolean = false;
+  togglePost: boolean = false;
+  toggleComment: boolean = false;
+  forumPosts!: Post[];
+  selectedPost?: Post;
+  selectedPostId? : number;
+  isUserLoggedIn!: boolean;
+  spinner: boolean = true;
 
   constructor(
     private postService: PostService,
-    private authService: AuthService
+    public authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.postService.getAllTopPosts().subscribe((response) => {
-      this.posts = response;
+    this.authService.changeInUser.subscribe({
+      next: (user: User | undefined) => {
+        this.isUserLoggedIn = this.authService.isUserLoggedIn()
+      },
+    })
+
+    this.postService.changeInForumPost.subscribe({
+      next: () => {
+        this.postService.getAllForumPosts().subscribe({
+          next: (data: any) => {
+            console.log(data.body as Post[]);
+            this.forumPosts = data.body as Post[];
+            this.spinner = false;
+            if (this.selectedPost){
+              this.selectedPost = this.forumPosts.filter((post : Post ) => post.id === this.selectedPostId)[0];
+            }
+          },
+          error: (error: string) => {
+            console.error(error);
+          },
+        });
+      },
     });
+    this.postService.changeInForumPost.next(undefined);
+    this.isUserLoggedIn = this.authService.isUserLoggedIn();
+
+    this.authService.changeInUser.subscribe({
+        next: (user: User | undefined) => {
+          if (user === undefined) {
+            this.isUserLoggedIn = this.userService.isUserLoggedIn();
+          }
+        }
+      }
+    )
   }
 
-  toggleCreatePost = () => {
-    this.createPost = !this.createPost;
-  };
+  onSelectPost(post: Post) {
+    this.selectedPost = post;
+    this.selectedPostId = post.id;
+  }
 
-  submitPost = (e: any) => {
-    e.preventDefault();
-    this.postService
-      .upsertPost(
-        new Post(
-          0,
-          this.postForm.value.text || '',
-          this.postForm.value.imageUrl || '',
-          this.authService.currentUser!,
-          [],
-          'Top'
-        )
-      )
-      .subscribe((response) => {
-        this.posts = [response, ...this.posts];
-        this.toggleCreatePost();
-      });
-  };
+  onSubmitPost(forumPost: Post) {
+    this.postService.submitForumPost(forumPost).subscribe({
+      next : (data : any) => {
+        console.log(data.body)
+        this.postService.changeInForumPost.next(undefined);
+      }
+    });
+
+  }
+
+  onSubmitComment(forumComment: Comment) {
+    this.postService.submitForumComment(forumComment).subscribe({
+      next : (data : any) => {
+        console.log(data.body)
+        this.postService.changeInForumPost.next(undefined);
+      }
+    });
+
+  }
+
+  hideComments() {
+    this.toggleComment = false;
+  }
 }

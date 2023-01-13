@@ -1,51 +1,57 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import Post from 'src/app/models/Post';
-import { AuthService } from 'src/app/services/auth.service';
-import { PostService } from 'src/app/services/post.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {FormControl, FormGroup , Validators} from "@angular/forms";
+import { outputAst } from '@angular/compiler';
+import User from "../../models/User";
+import Post from "../../models/Post";
+
 
 @Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css'],
+  selector: 'app-forum-post',
+  templateUrl: './forum-post.component.html',
+  styleUrls: ['./forum-post.component.css']
 })
 export class PostComponent implements OnInit {
-  commentForm = new FormGroup({
-    text: new FormControl(''),
-  });
 
-  @Input('post') post: Post;
-  replyToPost: boolean = false;
+  topic = new FormControl("", Validators.compose([Validators.required, Validators.maxLength(255)]));
+  content = new FormControl("", Validators.compose([Validators.required, Validators.maxLength(255)]))
 
-  constructor(
-    private postService: PostService,
-    private authService: AuthService
-  ) {}
+  postForm = new FormGroup({
+    topic : this.topic,
+    content : this.content
+  })
 
-  ngOnInit(): void {}
+  @Input()
+  user? : User;
 
-  toggleReplyToPost = () => {
-    this.replyToPost = !this.replyToPost;
-  };
+  @Output()
+  postEvent : EventEmitter<Post> = new EventEmitter<Post>()
 
-  submitReply = (e: any) => {
-    e.preventDefault();
-    let newComment = new Post(
-      0,
-      this.commentForm.value.text || '',
-      '',
-      this.authService.currentUser!,
-      [],
-      'Comment'
-    );
-    this.postService
-      .upsertPost({
-        ...this.post,
-        comments: [...this.post.comments, newComment],
-      })
-      .subscribe((response) => {
-        this.post = response;
-        this.toggleReplyToPost();
-      });
-  };
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  onSubmit() {
+
+    const postValues = this.postForm.value;
+
+    if (
+      this.user &&
+      postValues.topic &&
+      postValues.content
+    ){
+
+      const post : Post = {
+        postType: "",
+        imageUrl: "",
+        author : this.user,
+        topic : postValues.topic,
+        date : new Date(),
+        content : postValues.content
+      }
+
+      this.postEvent.emit(post)
+      this.postForm.reset()
+    }
+  }
 }

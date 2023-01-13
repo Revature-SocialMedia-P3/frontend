@@ -9,12 +9,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserCardComponent implements OnInit {
 
-  user: User = {} as User;
+  user!: User;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.user = this.authService.currentUser!
+    this.user = this.authService.currentUser!;
   }
 
 }

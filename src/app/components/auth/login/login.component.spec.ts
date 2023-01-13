@@ -15,8 +15,14 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     authServiceSpy = jasmine.createSpyObj(
       "AuthService",
-      [],
+      ["backendLogin", "getUser"],
       {"changeInUser": {"subscribe": () => {return null}}}
+    )
+
+    angularFireAuthSpy = jasmine.createSpyObj(
+      "AngularFireAuth",
+      ["signInWithEmailAndPassword"],
+      {}
     )
 
     await TestBed.configureTestingModule({
@@ -29,9 +35,7 @@ describe('LoginComponent', () => {
       ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -39,5 +43,37 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should log the user in with proper credentials', function () {
+
+    component.loginForm.get("email")?.setValue("validemail@email.com");
+    component.loginForm.get("password")?.setValue("validPassword");
+
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve())
+    // @ts-ignore
+    angularFireAuthSpy.signInWithEmailAndPassword.and.returnValue(Promise.resolve({}))
+
+    expect(component.isSubmitted).toBeFalse();
+    component.onSubmit()
+  });
+
+  it('should display error message when failing',  (done) => {
+
+    component.loginForm.get("email")?.setValue("validemail@email.com");
+    component.loginForm.get("password")?.setValue("validPassword");
+
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve())
+    // @ts-ignore
+    angularFireAuthSpy.signInWithEmailAndPassword.and.returnValue(Promise.reject({}))
+
+    expect(component.isSubmitted).toBeFalse();
+    component.onSubmit()
+    expect(component.isSubmitted).toBeTrue();
+    fixture.whenStable().then().then(() => {
+        expect(component.isSubmitted).toBeFalse();
+        expect(component.errorMessage).toEqual("Failed to log in. Please try again.");
+        done()
+      })
   });
 });

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(): void {
+  onSubmit() {
     let formValues = this.loginForm.value;
 
     if (

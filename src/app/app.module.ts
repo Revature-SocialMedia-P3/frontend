@@ -55,6 +55,6 @@ initializeApp(environment.firebaseConfigNotification);
 })
 export class AppModule {
   constructor() {
-    FirebaseTSApp.init(environment.firebaseConfigNotification);
+    // FirebaseTSApp.init(environment.firebaseConfigNotification);
   }
  }

@@ -1,7 +1,9 @@
 import User from "../app/models/User";
-import Post from "../app/models/Post";
+import {Post} from "../app/models/Post";
 import {LoginCredential} from "../app/models/login-credential";
 import {defer} from "rxjs";
+import {Game} from "../app/enums/game";
+import {environment} from "../environments/environment";
 
 
 export const VALID_USER: User = {
@@ -10,22 +12,30 @@ export const VALID_USER: User = {
   username: "valid_user"
 }
 
+export function setHttpAuth() : any {
+  let headers: any = environment.headers;
+  headers["Authorization"]= <string>localStorage.getItem("Authorization");
+  return headers;
+}
+
 export const VALID_POST_1: Post = {
   author: VALID_USER,
   comments: [],
   id: 1,
-  imageUrl: "",
-  postType: "",
-  text: "sample text"
+  date: new Date(),
+  time: 42069,
+  content: "super awesome record.",
+  game: Game.ddnr
 }
 
 export const VALID_POST_2: Post = {
   author: VALID_USER,
   comments: [],
   id: 2,
-  imageUrl: "",
-  postType: "",
-  text: "sample text again"
+  date: new Date(),
+  time: 69420,
+  content: "super awesome record.",
+  game: Game.ping
 }
 
 export const VALID_POST_ARRAY: Post[] = [VALID_POST_1, VALID_POST_2]

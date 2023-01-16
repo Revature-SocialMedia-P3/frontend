@@ -36,10 +36,12 @@ export class UserCardComponent implements OnInit {
   ngOnInit(): void {
     this.authService.changeInUser.subscribe({
       next: (user) => {
-        this.user = user!;
-        this.profileForm.get("username")?.setValue(this.user.username);
-        this.profileForm.get("emailEdit")?.setValue(this.user.email);
-        this.emailPasswordForm.get("emailAuth")?.setValue(this.user.email);
+        if (user) {
+          this.user = user!;
+          this.profileForm.get("username")?.setValue(this.user.username);
+          this.profileForm.get("emailEdit")?.setValue(this.user.email);
+          this.emailPasswordForm.get("emailAuth")?.setValue(this.user.email);
+        }
       }
     })
   }

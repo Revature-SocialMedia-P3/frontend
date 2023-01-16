@@ -7,6 +7,7 @@ import {ResetPasswordComponent} from "./components/auth/reset-password/reset-pas
 import {SplashComponent} from "./components/splash/splash.component";
 import {MyFeedComponent} from "./components/my-feed/my-feed.component";
 import {HomepageComponent} from "./components/homepage/homepage.component";
+import { ChatComponent } from './components/chat/chat.component';
 
 const routes: Routes = [
   { path: "", component: SplashComponent, pathMatch: "full" },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: "register", component: RegisterComponent },
   { path: "home", component: HomepageComponent},
   { path: "reset-password", component: ResetPasswordComponent},
+  { path: "chatroom", component: ChatComponent}
 ];
 
 @NgModule({
@@ -21,3 +23,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

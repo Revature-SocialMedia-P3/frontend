@@ -1,50 +1,22 @@
-var stompClient = null;
+const app = require('express')();
+const httpServer = require('http').createServer(app);
+const io = require('socket.io')(httpServer, {
+  cors: {origin : '*'}
+});
 
-function setConnected(connected) {
-    $("#connect").prop("disabled", connected);
-    $("#disconnect").prop("disabled", !connected);
-    if (connected) {
-        $("#conversation").show();
-    }
-    else {
-        $("#conversation").hide();
-    }
-    $("#greetings").html("");
-}
+const port = process.env.PORT || 8080;
 
-function connect() {
-    var socket = new SockJS('"http://localhost:4200"');
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        setConnected(true);
-        console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/chat', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).content);
-        });
-    });
-}
+io.on('connection', (socket) => {
+  console.log('a user connected');
 
-function disconnect() {
-    if (stompClient !== null) {
-        stompClient.disconnect();
-    }
-    setConnected(false);
-    console.log("Disconnected");
-}
+  socket.on('message', (message) => {
+    console.log(message);
+    io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
+  });
 
-function sendName() {
-    stompClient.send("/app/chat", {}, JSON.stringify({'name': $("#name").val()}));
-}
+  socket.on('disconnect', () => {
+    console.log('a user disconnected!');
+  });
+});
 
-function showGreeting(message) {
-    $("#greetings").append("<tr><td>" + message + "</td></tr>");
-}
-
-$(function () {
-    $("form").on('submit', function (e) {
-        e.preventDefault();
-    });
-    $( "#connect" ).click(function() { connect(); });
-    $( "#disconnect" ).click(function() { disconnect(); });
-    $( "#send" ).click(function() { sendName(); });
-}); 
+httpServer.listen(port, () => console.log(`listening on port ${port}`));

@@ -6,6 +6,7 @@ import {secrets} from "../../secrets";
 
 export const environment = {
   production: false,
+  SOCKET_ENDPOINT: 'http://localhost:8080',
   withCredentials: true,
   baseUrl: "http://localhost:8080",
   headers: {
@@ -22,6 +23,7 @@ export const environment = {
     measurementId: "G-HCVFP0MHCH",
     vapidKey: "BI1RoYZ88s_GwCUr_NvEeW7StgIVzpe0G2HxOFCubWBQM3u7N_VfyLubHWfMHQuBtXw2_kCzzLi7m7eyG9wmrmw"
   }
+  
 };
 
 /*

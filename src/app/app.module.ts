@@ -24,7 +24,10 @@ import { initializeApp } from 'firebase/app';
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { SplashComponent } from './components/splash/splash.component';
-import { ChatComponent } from './components/chat/chat.component';
+import { ChatService } from './components/chat/socketio.service';
+
+
+
 
 
 initializeApp(environment.firebaseConfigNotification);
@@ -40,7 +43,6 @@ initializeApp(environment.firebaseConfigNotification);
     UserCardComponent,
     NavbarComponent,
     ResetPasswordComponent,
-    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,9 @@ initializeApp(environment.firebaseConfigNotification);
     BrowserAnimationsModule,
     AngularMaterialModule,
     AngularFireModule.initializeApp(environment.firebaseConfigNotification),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    FormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

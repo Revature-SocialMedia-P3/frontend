@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
     });
   }
 
-
   requestPermission() {
     const messaging = getMessaging();
     getToken(messaging,
@@ -51,4 +50,6 @@ export class AppComponent implements OnInit {
       this.message=payload;
     });
   }
+
+  
 }

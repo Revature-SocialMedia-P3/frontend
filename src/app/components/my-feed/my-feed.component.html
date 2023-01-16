@@ -1,11 +1,14 @@
 <div>
-  <app-post *ngIf="togglePost && isUserLoggedIn" class="" [user]="authService.getCurrentUser()!" (postEvent)="onSubmitPost($event)"></app-post>
+  <app-post *ngIf="togglePost && isUserLoggedIn" class="" [user]="user" (postEvent)="onSubmitPost($event)"></app-post>
   <button *ngIf="isUserLoggedIn && !togglePost" (click)="togglePost = !togglePost" class="btn btn-success mt-4">New Post</button>
   <button *ngIf="isUserLoggedIn && togglePost" (click)="togglePost = !togglePost" class="btn btn-danger mt-4">Cancel</button>
-  <div *ngFor="let post of forumPosts" class="list-group m-3">
+  <div *ngFor="let post of Posts" class="list-group m-3">
     <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action bg" aria-current="true" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="d-flex w-100 justify-content-between">
-        <h5 class="mb-1"> {{post.game}}</h5>
+        <div class="row">
+          <h5 class="mb-1"> {{post.game}}</h5>
+          <h5 class="mb-1">{{post.time | seconds}}</h5>
+        </div>
         <small>{{post.date | date : "MM/dd/yy hh:mm"}}</small>
       </div>
       <p class="mb-1">{{post.author.username}}</p>

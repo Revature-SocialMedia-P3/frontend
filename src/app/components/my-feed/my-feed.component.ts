@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Post} from "../../models/Post";
 import {AuthService} from "../../services/auth.service";
 import {PostService} from "../../services/post.service";
+import User from "../../models/User";
 
 @Component({
   selector: 'app-my-feed',
@@ -12,16 +13,33 @@ export class MyFeedComponent implements OnInit {
 
   togglePost: boolean = false;
   toggleComment: boolean = false;
-  forumPosts!: Post[];
+  Posts!: Post[];
   selectedPost?: Post;
   selectedPostId? : number;
   isUserLoggedIn: boolean = true;
+  user! : User;
   constructor(
     public authService : AuthService,
     private postService : PostService
   ) {}
 
   ngOnInit(): void {
+    this.authService.changeInUser.subscribe({
+      next : (data : User | null) => {
+        this.user = data!;
+      }});
+    this.postService.changeInPost.subscribe({
+      next: () => {
+        this.postService.getAllMyPosts(this.user.id!).subscribe({
+          next: (data: Post[]) => {
+            this.Posts = data;
+          }, error: err => {
+            console.log(err);
+          }
+        });
+      }
+    })
+
   }
 
   onSelectPost(post: Post) {
@@ -29,7 +47,12 @@ export class MyFeedComponent implements OnInit {
     this.selectedPostId = post.id;
   }
 
-  onSubmitPost($event: Post) {
-
+  onSubmitPost(post : Post) {
+  this.postService.createPost(post).subscribe({
+    next : (data : any) => {
+      console.log(data.body);
+      this.postService.changeInPost.next();
+    }
+  })
   }
 }

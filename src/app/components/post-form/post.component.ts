@@ -35,26 +35,25 @@ export class PostComponent implements OnInit {
 
   onSubmit() {
     const postValues = this.postForm.value;
+    let totalSeconds = postValues.seconds! + postValues.minutes! * 60 + postValues.hours! * 3600;
 
     if (
       this.user &&
       postValues.game &&
       postValues.game !== this.game.notSelected &&
-      postValues.seconds &&
-      postValues.minutes &&
-      postValues.hours &&
+      totalSeconds &&
       postValues.content
     ) {
-    let totalSeconds = postValues.seconds + postValues.minutes * 60 + postValues.hours * 3600;
+
 
     if (totalSeconds > 0){
 
-      const post: Post = {
+      const post : Post = {
         author: this.user,
         game: postValues.game,
         date: new Date(),
         time: totalSeconds,
-        content: postValues.content,
+        content: postValues.content
       }
 
       this.postEvent.emit(post);

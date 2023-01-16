@@ -10,7 +10,6 @@ import { RegisterComponent } from './components/auth/register/register.component
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
-import { PostFeedPageComponent } from './components/post-feed-page/post-feed-page.component';
 import { PostComponent } from './components/post-form/post.component';
 import { CommentComponent } from './components/comment-form/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
@@ -22,12 +21,13 @@ import { initializeApp } from 'firebase/app';
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { SplashComponent } from './components/splash/splash.component';
-import { TruncatePipe } from './pipe/truncate.pipe';
+import { TruncatePipe } from './pipes/truncate.pipe';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { MyFeedComponent } from './components/my-feed/my-feed.component';
 import { TopFeedComponent } from './components/top-feed/top-feed.component';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { SecondsPipe } from './pipes/seconds.pipe';
 
 
 initializeApp(environment.firebaseConfigNotification);
@@ -37,7 +37,6 @@ initializeApp(environment.firebaseConfigNotification);
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    PostFeedPageComponent,
     PostComponent,
     CommentComponent,
     UserCardComponent,
@@ -50,6 +49,7 @@ initializeApp(environment.firebaseConfigNotification);
     TopFeedComponent,
     LeaderboardComponent,
     ChatComponent,
+    SecondsPipe,
   ],
   imports: [
     BrowserModule,

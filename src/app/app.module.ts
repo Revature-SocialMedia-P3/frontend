@@ -24,7 +24,7 @@ import { initializeApp } from 'firebase/app';
 import { AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { SplashComponent } from './components/splash/splash.component';
-import { ChatService } from './components/chat/socketio.service';
+
 
 
 
@@ -54,7 +54,6 @@ initializeApp(environment.firebaseConfigNotification);
     AngularFireModule.initializeApp(environment.firebaseConfigNotification),
     AngularFireAuthModule,
     FormsModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]

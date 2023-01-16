@@ -84,4 +84,10 @@ export class AuthService {
       }
     );
   }
+
+  updateUser(user: User) {
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.put<any>(`${this.authUrl}/update-user`, user, {headers: headers, withCredentials: environment.withCredentials});
+  }
 }

@@ -1,26 +1,15 @@
-import User from './User';
+import User from "./User";
+import {PostComment} from "./post-comment";
+import {Game} from "../enums/game";
 
-export default class Post {
-  id: number;
-  text: string;
-  imageUrl: string;
-  author: User;
-  comments: Post[];
-  postType: string;
+export interface Post{
+id? : number;
+author : User;
+date : Date;
+youtubeURL? : string;
+time : number;
+game : Game;
+content : string;
 
-  constructor(
-    id: number,
-    text: string,
-    imageUrl: string,
-    author: User,
-    comments: Post[],
-    postType: string
-  ) {
-    this.id = id;
-    this.text = text;
-    this.imageUrl = imageUrl;
-    this.author = author;
-    this.comments = comments;
-    this.postType = postType;
-  }
+comments? : PostComment[];
 }

@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.authService.changeInUser.subscribe((user: User | null) => {
       if (user) {
         localStorage.setItem("User", JSON.stringify(user));
-        this.router.navigate(['post-feed'])
+        this.router.navigate(['home'])
       }
     })
   }

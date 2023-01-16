@@ -6,7 +6,7 @@
     <a class="mx-2" (click)="OAuth('google')"><i class="bi bi-google"></i></a>
     <a class="mx-2" (click)="OAuth('facebook')"><i class="bi bi-facebook"></i></a>
     <a class="mx-2" (click)="OAuth('github')"><i class="bi bi-github"></i></a>
-    <a class="mx-2" (click)="isEmailPasswordAuth=true"><i class="bi bi-envelope"></i></a>
+    <a class="mx-2" (click)="isEmailPasswordAuth=true; isEditProfile=false"><i class="bi bi-envelope"></i></a>
   </div>
   <ng-container *ngIf="isEmailPasswordAuth">
     <form [formGroup]="emailPasswordForm" (ngSubmit)="OAuth('email')">

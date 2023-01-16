@@ -10,6 +10,9 @@ import {object} from "@angular/fire/database";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
 export class AppComponent implements OnInit {
   title = 'frontend';
   message:any = null;

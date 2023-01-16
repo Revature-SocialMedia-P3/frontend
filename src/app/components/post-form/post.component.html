@@ -1,6 +1,6 @@
 <div class="form-group" [formGroup]="postForm">
   <div class="col-md-4">
-    <label class="form-label" for="game">Game: </label>
+    <label class="form-label mt-4" for="game">Game: </label>
     <select id="game" class="form-control" type="text" formControlName="game" aria-label="Default select example">
       <option selected>Select your game!</option>
       <option [value]="game.ddnr">DDNR</option>
@@ -11,17 +11,28 @@
     </select>
   </div>
   <div>
-    <label class="form-label" for="seconds">Enter your best time: </label>
-    <input id="seconds" class="form-control" type="number" min="0" max="59" formControlName="seconds" placeholder="0-60">
-    <label class="form-label" for="minutes">Enter your best time: </label>
-    <input id="minutes" class="form-control" type="number" min="0" max="59" formControlName="minutes" placeholder="0-60">
-    <label class="form-label" for="hours">Enter your best time: </label>
-    <input id="hours" class="form-control" type="number" min="0" max="99" formControlName="hours" placeholder="0-99">
+    <p class="mt-4">Enter Your Best Time:</p>
+      <div class="row">
+        <div class="col-sm-2 col-lg-1">
+          <label class="form-label" for="hours">Hours:</label>
+          <input id="hours" class="form-control" type="number" min="0" max="99" formControlName="hours" placeholder="0-99">
+        </div>
+        <div class="col-sm-2 col-lg-1">
+          <label class="form-label" for="minutes">Minutes: </label>
+          <input id="minutes" class="form-control" type="number" min="0" max="59" formControlName="minutes" placeholder="0-60">
+        </div>
+        <div class="col-sm-2 col-lg-1">
+          <label class="form-label" for="seconds">Seconds: </label>
+          <input id="seconds" class="form-control" type="number" min="0" max="59" formControlName="seconds" placeholder="0-60">
+        </div>
+      </div>
   </div>
-  <div class="">
-    <label for="post">Create New Post: </label>
-    <textarea id="content" class="form-control" rows="5" placeholder="Enter text here..." id="post" formControlName="content"></textarea>
-    <div class="d-grid d-md-flex justify-content-md-end">
+  <div class="row mt-4 ">
+      <div class="col-md-6">
+        <label for="post">Create New Post: </label>
+        <textarea id="content" class="form-control" rows="5" placeholder="Enter text here..." id="post" formControlName="content"></textarea>
+        <div class="d-grid d-md-flex justify-content-md-end">
+      </div>
       <button class="btn btn-success mt-2" type="button" (click)="onSubmit()" id="button-addon2">Create Post</button>
     </div>
   </div>

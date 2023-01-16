@@ -15,11 +15,11 @@ export class PostComponent implements OnInit {
   game = Game;
 
   postForm = this.formBuilder.group({
-    game: [this.game.notSelected, Validators.compose([]), Validators.required],
-    seconds: [0, Validators.compose([]), Validators.required],
-    minutes: [0, Validators.compose([]), Validators.required],
-    hours: [0, Validators.compose([]), Validators.required],
-    content: ["", Validators.compose([]), Validators.maxLength(255), Validators.required],
+    game: [this.game.notSelected, Validators.compose([Validators.required])],
+    seconds: [0, Validators.compose([Validators.required])],
+    minutes: [0, Validators.compose([Validators.required])],
+    hours: [0, Validators.compose([Validators.required])],
+    content: ["", Validators.compose([Validators.maxLength(255), Validators.required])],
     youtubeURL: ["", Validators.compose([])],
     }
   )

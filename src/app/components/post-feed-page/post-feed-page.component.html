@@ -1,3 +1,4 @@
+
 <!--<div>-->
 <!--  <app-forum-post *ngIf="togglePost && isUserLoggedIn" class="" [user]="userService.getCurrentUser()" (postEvent)="onSubmitPost($event)"></app-forum-post>-->
 <!--  <button *ngIf="isUserLoggedIn && !togglePost" (click)="togglePost = !togglePost" class="btn btn-success mt-3">New Post</button>-->
@@ -21,3 +22,42 @@
   <app-my-feed></app-my-feed>
 </div>
 
+<!--=======-->
+<!--<div class="row g-3">-->
+<!--  <div class="col-xl-3">-->
+<!--    <app-user-card></app-user-card>-->
+<!--  </div>-->
+<!--  <div class="col-xl-9">-->
+<!--    <div [ngClass]="['sidebyside', 'post-feed-container']">-->
+<!--      <form class="form" *ngIf="!createPost; else createPostTemplate">-->
+<!--        <div class="full-width" appearance="fill">-->
+<!--          <mat-label>Something on your mind?</mat-label>-->
+<!--          <input matInput (focus)="toggleCreatePost()">-->
+<!--        </div>-->
+<!--      </form>-->
+
+<!--      <ng-template #createPostTemplate>-->
+<!--        <form class="form" [formGroup]="postForm" (ngSubmit)="submitPost($event)">-->
+<!--          <div class="full-width" appearance="fill">-->
+<!--            <div>Make a Post</div>-->
+<!--            <textarea matInput autofocus formControlName="text"></textarea>-->
+<!--          </div>-->
+<!--          <div class="full-width" appearance="fill">-->
+<!--            <mat-label>Add an Image?</mat-label>-->
+<!--            <input matInput formControlName="imageUrl">-->
+<!--          </div>-->
+<!--          <div align="end">-->
+<!--            <button mat-raised-button color="warn" (click)="toggleCreatePost()">Cancel</button>-->
+<!--            <button mat-raised-button color="primary" (click)="submitPost($event)">Post</button>-->
+<!--          </div>-->
+
+<!--        </form>-->
+<!--      </ng-template>-->
+
+<!--      <div id="post-feed" *ngFor="let post of posts">-->
+<!--        <app-post [post]="post"></app-post>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--&gt;>>>>>> a65cc91d2c3b9c655b1a7e5284d62ef31d2071b8-->

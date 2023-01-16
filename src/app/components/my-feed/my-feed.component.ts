@@ -15,7 +15,7 @@ export class MyFeedComponent implements OnInit {
   forumPosts!: Post[];
   selectedPost?: Post;
   selectedPostId? : number;
-  isUserLoggedIn!: boolean;
+  isUserLoggedIn: boolean = true;
   constructor(
     public authService : AuthService,
     private postService : PostService

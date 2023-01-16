@@ -15,7 +15,6 @@ import { CommentComponent } from './components/comment-form/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AngularFireModule} from "@angular/fire/compat";
-import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { environment } from 'src/environments/environment';
 import { initializeApp } from 'firebase/app';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";

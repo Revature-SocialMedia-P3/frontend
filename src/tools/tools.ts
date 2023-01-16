@@ -45,3 +45,10 @@ export function asyncDataFailure<T>(data: T) {
     return Promise.reject(data);
   })
 }
+
+export const FIREBASE_ERROR_MESSAGES = {
+  "auth/account-exists-with-different-credential": "Failed to log in. If you logged in previously with an account like facebook or google, please use the same method.",
+  "auth/email-already-in-use": "Failed to register. This email is already in use. If you logged in previously with an account like facebook or google, please use the same method.",
+  "auth/weak-password": "Failed to register. Password is too weak.",
+
+}

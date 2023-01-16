@@ -10,8 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PostFeedPageComponent } from './components/post-feed-page/post-feed-page.component';
-import { PostComponent } from './components/post/post.component';
-import { CommentComponent } from './components/comment/comment.component';
+import { PostComponent } from './components/post-form/post.component';
+import { CommentComponent } from './components/comment-form/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {AngularFireModule} from "@angular/fire/compat";
@@ -21,6 +21,11 @@ import { initializeApp } from 'firebase/app';
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { SplashComponent } from './components/splash/splash.component';
+import { TruncatePipe } from './pipe/truncate.pipe';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { MyFeedComponent } from './components/my-feed/my-feed.component';
+import { TopFeedComponent } from './components/top-feed/top-feed.component';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 
 initializeApp(environment.firebaseConfigNotification);
 
@@ -36,6 +41,11 @@ initializeApp(environment.firebaseConfigNotification);
     NavbarComponent,
     ResetPasswordComponent,
     SplashComponent,
+    TruncatePipe,
+    HomepageComponent,
+    MyFeedComponent,
+    TopFeedComponent,
+    LeaderboardComponent,
   ],
   imports: [
     BrowserModule,

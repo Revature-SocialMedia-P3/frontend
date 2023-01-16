@@ -1,14 +1,15 @@
-import User from './User';
+import User from "./User";
+import {PostComment} from "./post-comment";
+import {Game} from "../enums/game";
 
-export default class Post {
-  id?: number;
-  topic: string;
-  content: string;
-  imageUrl: string;
-  author: User;
-  comments?: Post[];
-  postType: string;
-  date: Date;
+export interface Post{
+id? : number;
+author : User;
+date : Date;
+youtubeURL? : string;
+time : number;
+game : Game;
+content : string;
 
-
+comments? : PostComment[];
 }

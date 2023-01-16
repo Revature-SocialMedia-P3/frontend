@@ -1,0 +1,23 @@
+<!--<div>-->
+<!--  <app-forum-post *ngIf="togglePost && isUserLoggedIn" class="" [user]="userService.getCurrentUser()" (postEvent)="onSubmitPost($event)"></app-forum-post>-->
+<!--  <button *ngIf="isUserLoggedIn && !togglePost" (click)="togglePost = !togglePost" class="btn btn-success mt-3">New Post</button>-->
+<!--  <button *ngIf="isUserLoggedIn && togglePost" (click)="togglePost = !togglePost" class="btn btn-danger mt-3">Cancel</button>-->
+<!--  <div *ngIf="spinner" class="d-flex justify-content-center m-5">-->
+<!--    <div class="spinner-grow" role="status">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div *ngFor="let post of posts" class="list-group m-3">-->
+<!--    <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action bg" aria-current="true" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--      <div class="d-flex w-100 justify-content-between">-->
+<!--        <h5 class="mb-1"> {{post.topic}}</h5>-->
+<!--        <small>{{post.date | date : "MM/dd/yy hh:mm"}}</small>-->
+<!--      </div>-->
+<!--      <p class="mb-1"><img class="img-fluid rounded" src="{{diceBearService.avatarURLFromUser(post.author)}}" width="25" height="auto"> {{post.author.username}}</p>-->
+<!--      <small class="text-wrap text-break">{{post.content | truncate : 100}}</small>-->
+<!--    </a>-->
+<!--  </div>-->
+<!--</div>-->
+<div>
+  <app-my-feed></app-my-feed>
+</div>
+

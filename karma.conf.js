@@ -30,15 +30,34 @@ module.exports = function (config) {
       reporters: [
         { type: 'html' },
         { type: 'text-summary' }
-      ]
+      ],
+      check: {
+        global: {
+          statements: 70,
+          branches: 70,
+          functions: 70,
+          lines: 70
+        }
+      }
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
+    autoWatch: false,
+    browsers: ['HeadlessChrome'],
+    customLaunchers: {
+      HeadlessChrome: {
+        base: "ChromeHeadless",
+        flags: [
+          "--no-sandbox",
+          "--disable-web-security",
+          "--disable-gpu",
+          "--remote-debugging-port=9222"
+        ]
+      }
+    },
+    singleRun: true,
     restartOnFileChange: true
   });
 };

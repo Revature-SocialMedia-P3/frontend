@@ -5,12 +5,14 @@ import { PostFeedPageComponent } from './components/post-feed-page/post-feed-pag
 import { RegisterComponent } from './components/auth/register/register.component';
 import {ResetPasswordComponent} from "./components/auth/reset-password/reset-password.component";
 import {SplashComponent} from "./components/splash/splash.component";
+import {MyFeedComponent} from "./components/my-feed/my-feed.component";
+import {HomepageComponent} from "./components/homepage/homepage.component";
 
 const routes: Routes = [
   { path: "", component: SplashComponent, pathMatch: "full" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
-  { path: "post-feed", component: PostFeedPageComponent},
+  { path: "home", component: HomepageComponent},
   { path: "reset-password", component: ResetPasswordComponent},
 ];
 

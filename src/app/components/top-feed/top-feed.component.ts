@@ -45,4 +45,8 @@ export class TopFeedComponent implements OnInit {
     this.selectedPost = post;
     this.selectedPostId = post.id;
   }
+
+  hideComments() {
+
+  }
 }

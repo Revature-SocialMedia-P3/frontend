@@ -34,7 +34,7 @@ describe('PostComponent', () => {
 
     fixture = TestBed.createComponent(PostComponent);
     component = fixture.componentInstance;
-    component.post = VALID_POST_1;
+    component.postForm = VALID_POST_1;
     fixture.detectChanges();
   });
 

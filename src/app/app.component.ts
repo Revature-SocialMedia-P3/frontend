@@ -21,9 +21,9 @@ export class AppComponent implements OnInit {
     this.requestPermission();
     this.listen();
     this.authService.changeInUser.subscribe({
-      next: (data : User | null) => {
-        this.user = data
-      }
+        next: (data : User | null) => {
+          this.user = data
+        }
     });
   }
 

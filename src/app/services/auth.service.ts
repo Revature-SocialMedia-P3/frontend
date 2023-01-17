@@ -53,8 +53,6 @@ export class AuthService {
     return this.currentUser;
   }
 
-
-
   async backendLogin(data: any, onSuccess: CallableFunction, onError: CallableFunction, username: string = "") {
     data = data.user.multiFactor.user;
 

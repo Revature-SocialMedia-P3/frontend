@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import {FormBuilder, Validators} from "@angular/forms";
 import {FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, linkWithPopup, getAuth, EmailAuthProvider, updateEmail, getIdToken} from "firebase/auth";
 import {linkWithCredential} from "@angular/fire/auth";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-user-card',
@@ -30,16 +31,18 @@ export class UserCardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {
     this.authService.changeInUser.subscribe({
       next: (user) => {
-        this.user = user!;
-        this.profileForm.get("username")?.setValue(this.user.username);
-        this.profileForm.get("emailEdit")?.setValue(this.user.email);
-        this.emailPasswordForm.get("emailAuth")?.setValue(this.user.email);
+        if (user) {
+          this.user = user!;
+          this.profileForm.get("username")?.setValue(this.user.username);
+          this.profileForm.get("emailEdit")?.setValue(this.user.email);
+          this.emailPasswordForm.get("emailAuth")?.setValue(this.user.email);
+        }
       }
     })
   }

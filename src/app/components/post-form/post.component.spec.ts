@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {VALID_POST_1, VALID_POST_ARRAY, VALID_USER} from "../../../tools/tools";
 import {PostService} from "../../services/post.service";
 import {sample} from "rxjs";
+import {FormBuilder} from "@angular/forms";
 
 describe('PostComponent', () => {
   let component: PostComponent;
@@ -28,13 +29,12 @@ describe('PostComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ PostComponent ],
       imports: [HttpClientTestingModule],
-      providers: [{provide: AuthService, useValue: authServiceSpy}]
+      providers: [{provide: AuthService, useValue: authServiceSpy}, FormBuilder]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(PostComponent);
     component = fixture.componentInstance;
-    component.postForm = VALID_POST_1;
     fixture.detectChanges();
   });
 

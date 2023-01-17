@@ -6,7 +6,7 @@
     <a class="mx-2" (click)="OAuth('google')"><i class="bi bi-google"></i></a>
     <a class="mx-2" (click)="OAuth('facebook')"><i class="bi bi-facebook"></i></a>
     <a class="mx-2" (click)="OAuth('github')"><i class="bi bi-github"></i></a>
-    <a class="mx-2" (click)="isEmailPasswordAuth=true"><i class="bi bi-envelope"></i></a>
+    <a class="mx-2" (click)="isEmailPasswordAuth=true; isEditProfile=false"><i class="bi bi-envelope"></i></a>
   </div>
   <ng-container *ngIf="isEmailPasswordAuth">
     <form [formGroup]="emailPasswordForm" (ngSubmit)="OAuth('email')">
@@ -16,11 +16,11 @@
       </p>
       <div class="mb-3">
         <label for="emailAuth" class="form-label">Email</label>
-        <input id="emailAuth" type="email" name="emailAuth" class="form-control" formControlName="emailAuth">
+        <input [ngClass]="{'is-valid': emailPasswordForm.get('emailAuth')!.valid, 'is-invalid': emailPasswordForm.get('emailAuth')!.invalid}" id="emailAuth" type="email" name="emailAuth" class="form-control" formControlName="emailAuth">
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
-        <input id="password" type="password" name="password" placeholder="password" class="form-control" formControlName="password">
+        <input [ngClass]="{'is-valid': emailPasswordForm.get('password')!.valid, 'is-invalid': emailPasswordForm.get('password')!.invalid}" id="password" type="password" name="password" placeholder="password" class="form-control" formControlName="password">
       </div>
       <button type="submit" class="btn btn-outline-success me-2">Submit</button>
       <button type="button" (click)="isEmailPasswordAuth=false" class="btn btn-outline-warning me-2">cancel</button>
@@ -50,11 +50,11 @@
       </p>
       <div class="mb-3">
         <label for="username" class="form-label">Username</label>
-        <input id="username" type="text" name="username" class="form-control" formControlName="username">
+        <input [ngClass]="{'is-valid': profileForm.get('username')!.valid, 'is-invalid': profileForm.get('username')!.invalid}" id="username" type="text" name="username" class="form-control" formControlName="username">
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input id="email" type="email" name="Email" class="form-control" formControlName="emailEdit">
+        <input [ngClass]="{'is-valid': profileForm.get('emailEdit')!.valid, 'is-invalid': profileForm.get('emailEdit')!.invalid}" id="email" type="email" name="Email" class="form-control" formControlName="emailEdit">
       </div>
       <button type="submit" class="btn btn-outline-success me-2">Submit</button>
       <button type="button" (click)="isEditProfile=false" class="btn btn-outline-warning me-2">cancel</button>

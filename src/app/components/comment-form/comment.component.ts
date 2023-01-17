@@ -13,7 +13,7 @@ import {PostComment} from "../../models/post-comment";
 })
 export class CommentComponent implements OnInit {
   commentForm = this.formBuilder.group({
-    content : ["",Validators.compose([]), Validators.required, Validators.maxLength(255)]
+    content : ["",Validators.compose([Validators.required, Validators.maxLength(255)])]
   })
 
   @Input()
@@ -26,8 +26,7 @@ export class CommentComponent implements OnInit {
   commentEvent : EventEmitter<PostComment> = new EventEmitter<PostComment>()
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     const commentValues =this.commentForm.value;

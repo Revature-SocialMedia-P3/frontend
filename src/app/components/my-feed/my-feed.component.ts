@@ -18,6 +18,7 @@ export class MyFeedComponent implements OnInit {
   selectedPostId? : number;
   isUserLoggedIn: boolean = true;
   user! : User;
+
   constructor(
     public authService : AuthService,
     private postService : PostService
@@ -54,5 +55,21 @@ export class MyFeedComponent implements OnInit {
       this.postService.changeInPost.next();
     }
   })
+  }
+
+  // onSubmitComment(postComment : PostComment) {
+  //   this.postService.createPostComment(postComment).subscribe({
+  //     next : (data : any) => {
+  //       console.log(data.body);
+  //       this.postService.changeInPost.next();
+  //     }
+  //   })
+  // }
+  //
+  // hideComments() {
+  //   this.toggleComment = false;
+  // }
+  hideComments() {
+
   }
 }

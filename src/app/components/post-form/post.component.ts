@@ -57,7 +57,6 @@ export class PostComponent implements OnInit {
         }
 
         console.log(post.date)
-
         this.postEvent.emit(post);
         this.postForm.reset();
       }

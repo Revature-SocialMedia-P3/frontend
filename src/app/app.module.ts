@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post-form/post.component';
-import { CommentComponent } from './components/comment-form/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AngularFireModule} from "@angular/fire/compat";
@@ -39,7 +38,6 @@ initializeApp(environment.firebaseConfigNotification);
     LoginComponent,
     RegisterComponent,
     PostComponent,
-    CommentComponent,
     UserCardComponent,
     NavbarComponent,
     ResetPasswordComponent,

@@ -37,4 +37,10 @@ export class PostService {
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
     return this.http.post<Post>(`${this.postUrl}/upsert`, post, {headers: headers, withCredentials: environment.withCredentials});
   }
+
+  // createPostComment(comment: PostComment) {
+  //   let headers: any = environment.headers;
+  //   headers["Authorization"]= <string>localStorage.getItem("Authorization");
+  //   return this.http.post<PostComment>(`${this.postUrl}/comment`, comment, {headers : headers, withCredentials : environment.withCredentials});
+  // }
 }

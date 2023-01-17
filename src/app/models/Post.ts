@@ -1,5 +1,4 @@
 import User from "./User";
-import {PostComment} from "./post-comment";
 import {Game} from "../enums/game";
 
 export interface Post{
@@ -11,5 +10,5 @@ time : number;
 game : Game;
 content : string;
 
-comments? : PostComment[];
+// comments? : PostComment[];
 }

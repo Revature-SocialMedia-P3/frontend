@@ -1,23 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from "../environments/environment";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import {AuthService} from "./services/auth.service";
+import User from "./models/User";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
+
 export class AppComponent implements OnInit {
-title = 'frontend';
+  title = 'frontend';
   message:any = null;
-  constructor() {}
+  user? : User | null;
+  constructor(private authService : AuthService) {}
   ngOnInit(): void {
     this.requestPermission();
     this.listen();
+    this.authService.changeInUser.subscribe({
+        next: (data : User | null) => {
+          this.user = data
+        }
+    });
   }
+
+
   requestPermission() {
     const messaging = getMessaging();
-    getToken(messaging, 
+    getToken(messaging,
      { vapidKey: environment.firebaseConfigNotification.vapidKey}).then(
        (currentToken) => {
          if (currentToken) {
@@ -37,4 +50,8 @@ title = 'frontend';
       this.message=payload;
     });
   }
+
+  public searchInput: string;
+  public User = []
 }
+

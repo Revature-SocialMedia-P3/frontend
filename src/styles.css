@@ -4,12 +4,75 @@ html,
 body {
   height: 100%;
 }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  min-height: 100vh;
-  background: #e2e2e2;
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+  --text-color: #EEE0CB;
+  --bkg-color: #041c32;
+  --btn-txt-color: #EEE0CB;
+  --btn-bg-color: #EEE0CB;
+  --contrast-bg: #0A7199;
+  --contrast-bbg: #0C8DC0;
+  --on-hover: #424446;
+  --in-text-input: #EEE0CB;
 }
+
+body.non-dark-theme {
+  --text-color: #141417;
+  --bkg-color: #42a9be;
+  --btn-txt-color: #EEE0CB;
+  --btn-bg-color: #EEE0CB;
+  --contrast-bg: #0A7199;
+  --contrast-bbg: #0C8DC0;
+  --on-hover: #424446;
+  --in-text-input: #EEE0CB;
+}
+
+body {
+  background: var(--bkg-color);
+}
+
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 2px;
+  color: var(--btn-txt-color);
+  background-color: var(--btn-bg-color);
+}
+
+* {
+  color: var(--text-color);
+}
+
+.abg{
+  background-color: var(--contrast-bg);
+}
+
+.bbg{
+  background-color: var(--contrast-bbg);
+}
+
+.bg {
+  background-color: var(--contrast-bg);
+}
+
+.bg:hover {
+  background-color: var(--on-hover);
+}
+
+a {
+  cursor: pointer;
+}
+
+.nav-img{
+  cursor: pointer;
+}
+
+.textin {
+  background-color: var(--in-text-input);
+}
+.black-text {
+  --text-color: black;
+}
+
 .app-header {
   justify-content: space-between;
   position: fixed;
@@ -109,12 +172,12 @@ body {
   width:10em;
   height: 10em;
   border-radius: 7em;
-      
+
   border: 1px solid #888080;
-     
+
   margin-bottom: 1em;
 
-  background-image: url('./assets/images/favicon.png');
+  background-image: url('./assets/images/high-score-logo-man.png');
   background-size: cover;
 }
 

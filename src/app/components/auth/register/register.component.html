@@ -9,15 +9,15 @@
           </p>
         <div class="mb-3">
           <label for="email" class="form-label">Email</label>
-          <input id="email" type="email" placeholder="Email" name="Email" class="form-control" formControlName="email">
+          <input [ngClass]="{'is-valid': registerForm.get('email')!.valid, 'is-invalid': registerForm.get('email')!.invalid}" id="email" type="email" placeholder="Email" name="Email" class="form-control" formControlName="email">
         </div>
           <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input id="password" type="password" placeholder="Password" name="password" class="form-control" formControlName="password">
+            <input [ngClass]="{'is-valid': registerForm.get('password')!.valid, 'is-invalid': registerForm.get('password')!.invalid}" id="password" type="password" placeholder="Password" name="password" class="form-control" formControlName="password">
           </div>
           <div class="mb-3">
             <label for="username" class="form-label">Username</label>
-            <input id="username" type="text" placeholder="Username" name="username" class="form-control" formControlName="username">
+            <input [ngClass]="{'is-valid': registerForm.get('username')!.valid, 'is-invalid': registerForm.get('username')!.invalid}" id="username" type="text" placeholder="Username" name="username" class="form-control" formControlName="username">
           </div>
           <div class="mb-3">
             <button type="submit" class="btn btn-outline-success me-2">Register</button>

@@ -1,0 +1,23 @@
+<div class="row g-3 mt-4 ms-5">
+  <div class="col-xl-3">
+    <app-user-card></app-user-card>
+  </div>
+
+  <div class="col-xl-9 ">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{active : selected === 'my-feed'}" (click)="selected='my-feed'">My Feed</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{active : selected === 'top-feed'}" (click)="selected='top-feed'">Top Posts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [ngClass]="{active : selected === 'leaderboard'}" (click)="selected='leaderboard'">Leaderboards</a>
+      </li>
+    </ul>
+    <app-my-feed *ngIf="selected==='my-feed'"></app-my-feed>
+    <app-top-feed *ngIf="selected==='top-feed'"></app-top-feed>
+    <app-leaderboard *ngIf="selected==='leaderboard'"></app-leaderboard>
+
+  </div>
+</div>

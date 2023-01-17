@@ -1,35 +1,46 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import Post from '../models/Post';
+import {Injectable} from "@angular/core";
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
+import {Post} from "../models/Post";
+import {user} from "@angular/fire/auth";
+import User from "../models/User";
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
-  postUrl: string = `${environment.baseUrl}/post`;
+  postUrl : string = `${environment.baseUrl}/post`;
+  changeInPost: Subject<void> = new BehaviorSubject<void>(undefined);
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http : HttpClient
+  ) {}
 
-  getAllPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.postUrl}`, {
-      headers: environment.headers,
-      withCredentials: environment.withCredentials,
-    });
+  getAllMyPosts(id : number) : Observable<Post[]> {
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<Post[]>(`${this.postUrl}/my-feed/${id}`, {headers: headers, withCredentials: environment.withCredentials});
   }
-
-  getAllTopPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.postUrl}/feed`, {
-      headers: environment.headers,
-      withCredentials: environment.withCredentials,
-    });
+  getTopPosts() : Observable<Post[]>{
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<Post[]>(`${this.postUrl}/top-feed`, {headers: headers, withCredentials: environment.withCredentials});
   }
-
-  upsertPost(post: Post): Observable<Post> {
-    return this.http.put<Post>(`${this.postUrl}`, post, {
-      headers: environment.headers,
-      withCredentials: environment.withCredentials,
-    });
+  getLeaderboard() : Observable<Post[]>{
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<Post[]>(`${this.postUrl}/leaderboard`, {headers: headers, withCredentials: environment.withCredentials});
+  }
+  createPost(post : Post)  {
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.post<Post>(`${this.postUrl}/upsert`, post, {headers: headers, withCredentials: environment.withCredentials});
+  }
+  getUsersMatching(query : string) {
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<User[]>(`${this.postUrl}/search?user=${query}`, {headers: headers, withCredentials: environment.withCredentials});
   }
 }

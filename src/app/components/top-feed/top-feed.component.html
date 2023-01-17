@@ -34,21 +34,21 @@
       <div class="modal-body ">
         <p class="text-wrap text-break">{{selectedPost.content}}</p>
       </div>
-      <!--      <div>-->
-      <!--        <div *ngFor="let comment of selectedPost.comments" class="list-group m-3">-->
-      <!--          <a class="list-group-item bbg" aria-current="false">-->
-      <!--            <div class="d-flex w-100 justify-content-between">-->
-      <!--              <h5 class="mb-1"> {{comment.commenter.username}}</h5>-->
-      <!--              <small>{{comment.date | date : "MM/dd/yy hh:mm"}}</small>-->
-      <!--            </div>-->
-      <!--            <p class="mb-1">{{comment.content}}</p>-->
-      <!--          </a>-->
-      <!--        </div>-->
-      <!--&lt;!&ndash;        <div class="modal-body">&ndash;&gt;-->
-      <!--&lt;!&ndash;          <button *ngIf="isUserLoggedIn && !toggleComment" (click)="toggleComment = !toggleComment" class="btn btn-success">New Comment</button>&ndash;&gt;-->
-      <!--&lt;!&ndash;          <app-comment *ngIf="toggleComment" [user]="user" [selectedPost]="selectedPost" (commentEvent)="onSubmitComment($event)"></app-comment>&ndash;&gt;-->
-      <!--&lt;!&ndash;        </div>&ndash;&gt;-->
-      <!--      </div>-->
+      <div>
+        <div *ngFor="let postComment of selectedPost.postComments" class="list-group m-3">
+          <a class="list-group-item bbg" aria-current="false">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"> {{postComment.commenter.username}}</h5>
+              <small>{{postComment.date | date : "MM/dd/yy hh:mm"}}</small>
+            </div>
+            <p class="mb-1">{{postComment.content}}</p>
+          </a>
+        </div>
+        <div class="modal-body">
+          <button *ngIf="isUserLoggedIn && !toggleComment" (click)="toggleComment = !toggleComment" class="btn btn-success">New Comment</button>
+          <app-post-comment *ngIf="toggleComment" [user]="user" [selectedPost]="selectedPost" (postCommentEvent)="onSubmitPostComment($event)"></app-post-comment>
+        </div>
+      </div>
     </div>
   </div>
 </div>

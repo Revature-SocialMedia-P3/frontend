@@ -3,6 +3,7 @@ import {Post} from "../../models/Post";
 import User from "../../models/User";
 import {AuthService} from "../../services/auth.service";
 import {PostService} from "../../services/post.service";
+import {PostComment} from "../../models/post-comment";
 
 @Component({
   selector: 'app-top-feed',
@@ -48,5 +49,14 @@ export class TopFeedComponent implements OnInit {
 
   hideComments() {
 
+  }
+
+  onSubmitPostComment(postComment : PostComment) {
+    this.postService.createPostComment(postComment).subscribe({
+      next : (data : any) => {
+        console.log(data.body);
+        this.postService.changeInPost.next();
+      }
+    })
   }
 }

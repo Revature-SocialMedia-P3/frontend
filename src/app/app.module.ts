@@ -28,6 +28,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { ChatComponent } from './components/chat/chat.component';
 import { SecondsPipe } from './pipes/seconds.pipe';
 import { RemoveSpacesPipe } from './pipes/remove-spaces.pipe';
+import { PostCommentComponent } from './components/post-comment/post-comment.component';
 
 
 initializeApp(environment.firebaseConfigNotification);
@@ -50,6 +51,7 @@ initializeApp(environment.firebaseConfigNotification);
     ChatComponent,
     SecondsPipe,
     RemoveSpacesPipe,
+    PostCommentComponent,
   ],
   imports: [
     FormsModule,

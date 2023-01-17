@@ -51,10 +51,12 @@ export class PostComponent implements OnInit {
       const post : Post = {
         author: this.user,
         game: postValues.game,
-        date: new Date(),
+        date: new Date(Date.now()),
         time: totalSeconds,
         content: postValues.content
       }
+
+      console.log(post.date)
 
       this.postEvent.emit(post);
       this.postForm.reset();

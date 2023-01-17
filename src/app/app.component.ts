@@ -3,7 +3,6 @@ import { environment } from "../environments/environment";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import {AuthService} from "./services/auth.service";
 import User from "./models/User";
-import {object} from "@angular/fire/database";
 
 @Component({
   selector: 'app-root',

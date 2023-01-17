@@ -30,8 +30,7 @@ export class PostComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit() {
     const postValues = this.postForm.value;
@@ -45,7 +44,6 @@ export class PostComponent implements OnInit {
       postValues.content
     ) {
 
-
       if (totalSeconds > 0) {
 
         const post: Post = {
@@ -56,7 +54,6 @@ export class PostComponent implements OnInit {
           content: postValues.content
         }
 
-        console.log(post.date)
         this.postEvent.emit(post);
         this.postForm.reset();
       }

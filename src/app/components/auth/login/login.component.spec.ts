@@ -21,7 +21,7 @@ describe('LoginComponent', () => {
 
     angularFireAuthSpy = jasmine.createSpyObj(
       "AngularFireAuth",
-      ["signInWithEmailAndPassword"],
+      ["signInWithEmailAndPassword", "signInWithPopup"],
       {}
     )
 
@@ -75,5 +75,82 @@ describe('LoginComponent', () => {
         expect(component.errorMessage).toEqual("Failed to log in. Please try again.");
         done()
       })
+  });
+
+  it('should log in with facebook', function (done) {
+    // @ts-ignore
+    angularFireAuthSpy.signInWithPopup.and.returnValue(Promise.resolve({}));
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve());
+
+    expect(component.isSubmitted).toBeFalse();
+    component.OAuth("facebook")
+
+    expect(component.isSubmitted).toBeTrue();
+    fixture.whenStable().then(() => {
+    }).then(() => {
+      done()
+    })
+  });
+
+  it('should log in with google', function (done) {
+    // @ts-ignore
+    angularFireAuthSpy.signInWithPopup.and.returnValue(Promise.resolve({}));
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve());
+
+    expect(component.isSubmitted).toBeFalse();
+    component.OAuth("google")
+
+    expect(component.isSubmitted).toBeTrue();
+    fixture.whenStable().then(() => {
+    }).then(() => {
+      done()
+    })
+  });
+
+  it('should log in with github', function (done) {
+    // @ts-ignore
+    angularFireAuthSpy.signInWithPopup.and.returnValue(Promise.resolve({}));
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve());
+
+    expect(component.isSubmitted).toBeFalse();
+    component.OAuth("github")
+
+    expect(component.isSubmitted).toBeTrue();
+    fixture.whenStable().then(() => {
+    }).then(() => {
+      done()
+    })
+  });
+
+  it('should provide an appropriate error message', function (done) {
+    // @ts-ignore
+    angularFireAuthSpy.signInWithPopup.and.returnValue(Promise.reject({code: "auth/account-exists-with-different-credential"}));
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve());
+
+    expect(component.isSubmitted).toBeFalse();
+    component.OAuth("github");
+    expect(component.isSubmitted).toBeTrue();
+
+    fixture.whenStable().then(() => {}).catch(() => {}).then(() => {
+      expect(component.errorMessage).toEqual("Failed to log in. If you logged in previously with an account like facebook or google, please use the same method.");
+      expect(component.isSubmitted).toBeFalse();
+      done();
+    })
+  });
+
+  it('should provide a generic error message', function (done) {
+    // @ts-ignore
+    angularFireAuthSpy.signInWithPopup.and.returnValue(Promise.reject({code: ""}));
+    authServiceSpy.backendLogin.and.returnValue(Promise.resolve());
+
+    expect(component.isSubmitted).toBeFalse();
+    component.OAuth("github");
+    expect(component.isSubmitted).toBeTrue();
+
+    fixture.whenStable().then(() => {}).catch(() => {}).then(() => {
+      expect(component.errorMessage).toEqual("Failed to log in. Please try again.");
+      expect(component.isSubmitted).toBeFalse();
+      done();
+    })
   });
 });

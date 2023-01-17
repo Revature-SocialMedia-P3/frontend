@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import {FormBuilder, Validators} from "@angular/forms";
 import {FacebookAuthProvider, GithubAuthProvider, GoogleAuthProvider, linkWithPopup, getAuth, EmailAuthProvider, updateEmail, getIdToken} from "firebase/auth";
 import {linkWithCredential} from "@angular/fire/auth";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
 
 @Component({
   selector: 'app-user-card',
@@ -30,7 +31,7 @@ export class UserCardComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {}
 
   ngOnInit(): void {

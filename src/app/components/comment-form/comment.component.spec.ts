@@ -4,6 +4,7 @@ import { CommentComponent } from './comment.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {AuthService} from "../../services/auth.service";
 import {VALID_POST_1} from "../../../tools/tools";
+import {FormBuilder} from "@angular/forms";
 
 describe('CommentComponent', () => {
   let component: CommentComponent;
@@ -14,13 +15,12 @@ describe('CommentComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ CommentComponent ],
       imports: [HttpClientTestingModule],
-      providers: [{provide: AuthService, useValue: authServiceSpy}]
+      providers: [{provide: AuthService, useValue: authServiceSpy}, FormBuilder]
     })
     .compileComponents();
 
     fixture = TestBed.createComponent(CommentComponent);
     component = fixture.componentInstance;
-    component.inputComment = VALID_POST_1;
     fixture.detectChanges();
   });
 

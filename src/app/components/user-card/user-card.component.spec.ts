@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserCardComponent } from './user-card.component';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {AuthService} from "../../services/auth.service";
-import {VALID_USER} from "../../../tools/tools";
+import {asyncData, VALID_USER} from "../../../tools/tools";
+import {FormBuilder} from "@angular/forms";
 
 describe('UserCardComponent', () => {
   let component: UserCardComponent;
@@ -14,12 +15,12 @@ describe('UserCardComponent', () => {
     authServiceSpy = jasmine.createSpyObj(
       "AuthService",
       [],
-      {"currentUser": VALID_USER}
+      {"changeInUser": asyncData(VALID_USER)}
     )
     await TestBed.configureTestingModule({
       declarations: [ UserCardComponent ],
       imports: [HttpClientTestingModule],
-      providers: [{provide: AuthService, useValue: authServiceSpy}]
+      providers: [{provide: AuthService, useValue: authServiceSpy}, FormBuilder]
     })
     .compileComponents();
 

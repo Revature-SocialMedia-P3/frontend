@@ -1,13 +1,12 @@
-import {fakeAsync, TestBed} from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
 import { AuthService } from './auth.service';
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {asyncData, asyncDataFailure, VALID_USER} from "../../tools/tools";
 import {RouterTestingModule} from "@angular/router/testing";
-import {defer, Observable} from "rxjs";
+import {Observable} from "rxjs";
 import User from "../models/User";
-import {Injectable} from "@angular/core";
 
 
 describe('AuthService', () => {
@@ -129,5 +128,25 @@ describe('AuthService', () => {
     expect(service.currentUser?.username).toEqual(VALID_USER.username);
     expect(service.currentUser?.email).not.toEqual(data.user.multiFactor.user.email);
     expect(localStorage.getItem("Authorization")).toEqual("Bearer " + data.user.multiFactor.user.accessToken);
+  });
+
+  it('should get the current user', function () {
+    service.currentUser = VALID_USER;
+
+    let actual = service.getCurrentUser();
+
+    expect(actual).toEqual(VALID_USER);
+
+    service.currentUser = null;
+
+    actual = service.getCurrentUser();
+
+    expect(actual).toBeNull();
+  });
+
+  it('should return an observable', function () {
+    let actual = service.updateUser(VALID_USER);
+
+    expect(actual).toBeInstanceOf(Observable);
   });
 });

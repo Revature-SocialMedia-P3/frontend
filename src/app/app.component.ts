@@ -50,4 +50,8 @@ export class AppComponent implements OnInit {
       this.message=payload;
     });
   }
+
+  public searchInput: string;
+  public User = []
 }
+

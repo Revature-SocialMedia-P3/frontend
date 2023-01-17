@@ -10,8 +10,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit{
 
-  constructor(private authService: AuthService, private router: Router) { }
-  
+  constructor(public authService: AuthService, private router: Router) { }
+
   ngOnInit(): void {
   }
 
@@ -23,4 +23,7 @@ export class NavbarComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
+  toggleDarkTheme(): void {
+    document.body.classList.toggle('non-dark-theme');
+  }
 }

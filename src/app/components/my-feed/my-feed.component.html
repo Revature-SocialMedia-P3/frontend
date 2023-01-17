@@ -1,0 +1,27 @@
+<div>
+  <app-post *ngIf="togglePost && isUserLoggedIn" class="" [user]="user" (postEvent)="onSubmitPost($event)"></app-post>
+  <a *ngIf="isUserLoggedIn && !togglePost" (click)="togglePost = !togglePost" class="link mt-4">New Post</a>
+  <button *ngIf="isUserLoggedIn && togglePost" (click)="togglePost = !togglePost" class="btn btn-danger mt-4">Cancel</button>
+  <div *ngFor="let post of Posts" class="list-group m-3 w-75">
+    <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action bg" aria-current="true" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <div class="d-flex w-100 justify-content-between">
+        <div>
+          <strong class="mb-1 me-3"> {{post.game}} >> {{post.time | seconds}}</strong>
+        </div>
+        <small>{{post.date | date : "MM/dd/yy hh:mm"}}</small>
+      </div>
+      <div class="d-flex w-100 justify-content-between">
+        <div class="row">
+          <p class="mb-1">{{post.author.username}}</p>
+          <img
+            src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{post.author.username}}"
+            alt=""
+            style="max-height: 50px; width: auto"
+          >
+          <small class="text-wrap text-break">{{post.content | truncate : 100}}</small>
+        </div>
+        <img alt="game img" src="assets/images/{{post.game | removeSpaces}}.png" class="img-thumbnail" style="max-height: 150px">
+      </div>
+    </a>
+  </div>
+</div>

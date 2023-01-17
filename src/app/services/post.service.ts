@@ -27,7 +27,11 @@ export class PostService {
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
     return this.http.get<Post[]>(`${this.postUrl}/top-feed`, {headers: headers, withCredentials: environment.withCredentials});
   }
-
+  getLeaderboard() : Observable<Post[]>{
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<Post[]>(`${this.postUrl}/leaderboard`, {headers: headers, withCredentials: environment.withCredentials});
+  }
   createPost(post : Post)  {
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");

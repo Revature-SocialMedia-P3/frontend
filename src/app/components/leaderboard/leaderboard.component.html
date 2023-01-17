@@ -10,6 +10,11 @@
       <div class="d-flex w-100 justify-content-between">
         <div class="row">
           <p class="mb-1">{{field.value.author.username}}</p>
+          <img
+            src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{field.value.author.username}}"
+            alt=""
+            style="max-height: 50px; width: auto"
+          >
           <small class="text-wrap text-break">{{field.value.content | truncate : 100}}</small>
         </div>
         <img alt="game img" src="assets/images/{{field.key | removeSpaces}}.png" class="img-thumbnail" style="max-height: 150px">

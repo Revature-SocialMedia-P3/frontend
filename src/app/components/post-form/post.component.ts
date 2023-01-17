@@ -46,20 +46,21 @@ export class PostComponent implements OnInit {
     ) {
 
 
-    if (totalSeconds > 0){
+      if (totalSeconds > 0) {
 
-      const post : Post = {
-        author: this.user,
-        game: postValues.game,
-        date: new Date(),
-        time: totalSeconds,
-        content: postValues.content
+        const post: Post = {
+          author: this.user,
+          game: postValues.game,
+          date: new Date(Date.now()),
+          time: totalSeconds,
+          content: postValues.content
+        }
+
+        console.log(post.date)
+
+        this.postEvent.emit(post);
+        this.postForm.reset();
       }
-
-      this.postEvent.emit(post);
-      this.postForm.reset();
     }
-    }
-
   }
 }

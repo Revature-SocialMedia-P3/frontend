@@ -48,13 +48,13 @@ export class TopFeedComponent implements OnInit {
   }
 
   hideComments() {
-
+    this.toggleComment = false;
   }
 
   onSubmitPostComment(postComment : PostComment) {
     this.postService.createPostComment(postComment).subscribe({
       next : (data : any) => {
-        console.log(data.body);
+        console.log(data);
         this.postService.changeInPost.next();
       }
     })

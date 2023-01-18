@@ -71,5 +71,4 @@ export class MyFeedComponent implements OnInit {
   hideComments() {
     this.toggleComment = false;
   }
-
 }

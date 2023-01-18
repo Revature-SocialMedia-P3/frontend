@@ -1,7 +1,9 @@
 <div>
-  <div class="d-inline-flex mt-4">
-    <img src="assets/images/high-score-logo-man.png" alt="" class="img-thumbnail">
-  </div>
+  <img
+    src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{user.username}}"
+    alt=""
+    class="img-thumbnail w-50"
+  >
   <div class="d-flex mt-4">
     <a class="mx-2" (click)="OAuth('google')"><i class="bi bi-google"></i></a>
     <a class="mx-2" (click)="OAuth('facebook')"><i class="bi bi-facebook"></i></a>

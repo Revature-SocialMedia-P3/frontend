@@ -54,6 +54,7 @@ export function asyncDataFailure<T>(data: T) {
   return defer(() => {
     return Promise.reject(data);
   })
+
 }
 
 export const FIREBASE_ERROR_MESSAGES = {

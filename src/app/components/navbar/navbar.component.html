@@ -11,8 +11,14 @@
         <li>
           <a class="nav-link" routerLink="home">My Page</a>
         </li>
-
       </ul>
+
+      <form (ngSubmit)="onSearch()" [formGroup]="searchForm" class="d-flex" role="search">
+        <input class="form-control me-2" formControlName="search" type="search" placeholder="Search for other players" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
+
       <ul class="navbar-nav mb-auto me-5 mb-2 mb-lg-0">
         <li *ngIf="!authService.getCurrentUser()" class="nav-item">
           <a class="nav-link" routerLink="register">Register</a>
@@ -27,3 +33,4 @@
     </div>
   </div>
 </nav>
+

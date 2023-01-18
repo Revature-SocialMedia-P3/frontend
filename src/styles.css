@@ -241,3 +241,7 @@ a {
 .spacer {
   flex: 1 1 auto;
 }
+
+.alt-bg {
+  background: var(--contrast-bg);
+}

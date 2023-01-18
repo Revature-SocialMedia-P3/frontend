@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
+import { User } from 'stream-chat';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +12,25 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
+
+searchSubmitted = false  
+search: string = ""
+searchResults?: User[]
+noResults = false
+
 onSearch() {
-  this.postService.getUsersMatching(this.searchForm.value.search!).subscribe({
+  this.searchSubmitted = true
+  this.postService.getUsersMatching(this.search).subscribe({
     next: (data: any) => {
+      if ((data as User[]).length === 0) this.noResults = true;
+      else this.noResults = false
+      this.searchSubmitted = false
+      this.searchResults = data
       console.log(data)
     },
     error: (error: any) => {
       console.log(error)
+      this.searchSubmitted = false
     }
   })
 }

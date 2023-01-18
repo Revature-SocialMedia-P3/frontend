@@ -52,6 +52,7 @@ initializeApp(environment.firebaseConfigNotification);
     ChatComponent,
     SecondsPipe,
     RemoveSpacesPipe,
+    
   ],
   imports: [
     FormsModule,

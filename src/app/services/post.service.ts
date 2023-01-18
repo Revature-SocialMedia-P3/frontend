@@ -43,4 +43,19 @@ export class PostService {
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
     return this.http.get<User[]>(`${this.postUrl}/search?user=${query}`, {headers: headers, withCredentials: environment.withCredentials});
   }
+  increaseCount(){
+    let headers: any = environment.headers;
+    headers["Authorization"] = <string>localStorage.getItem("Authorization");
+    return this.http.put(`${this.postUrl}/like`, {headers: headers, withCredentials: environment.withCredentials});
+  }
+  decreaseCount(){
+    let headers: any = environment.headers;
+    headers["Authorization"] = <string>localStorage.getItem("Authorization");
+    return this.http.put(`${this.postUrl}/dislike`, {headers: headers, withCredentials: environment.withCredentials});
+  }
+  getLikeCount() {
+    let headers: any = environment.headers;
+    headers["Authorization"] = <string>localStorage.getItem("Authorization");
+    return this.http.get(`${this.postUrl}/likeCount`,{headers: headers, withCredentials: environment.withCredentials})
+  }
 }

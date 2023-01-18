@@ -20,22 +20,22 @@ export function setHttpAuth() : any {
 
 export const VALID_POST_1: Post = {
   author: VALID_USER,
-  comments: [],
   id: 1,
   date: new Date(),
   time: 42069,
   content: "super awesome record.",
-  game: Game.ddnr
+  game: Game.ddnr,
+  postComments: []
 }
 
 export const VALID_POST_2: Post = {
   author: VALID_USER,
-  comments: [],
   id: 2,
   date: new Date(),
   time: 69420,
   content: "super awesome record.",
-  game: Game.ping
+  game: Game.ping,
+  postComments: []
 }
 
 export const VALID_POST_ARRAY: Post[] = [VALID_POST_1, VALID_POST_2]

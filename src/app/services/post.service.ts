@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {Post} from "../models/Post";
 import {user} from "@angular/fire/auth";
 import {PostComment} from "../models/post-comment";
+import User from "../models/User";
 
 
 @Injectable({
@@ -38,11 +39,14 @@ export class PostService {
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
     return this.http.post<Post>(`${this.postUrl}/upsert`, post, {headers: headers, withCredentials: environment.withCredentials});
   }
-
   createPostComment(comment: PostComment) {
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
     return this.http.post<PostComment>(`${this.postUrl}/comment`, comment, {headers : headers, withCredentials : environment.withCredentials});
   }
-
+  getUsersMatching(query : string) {
+    let headers: any = environment.headers;
+    headers["Authorization"]= <string>localStorage.getItem("Authorization");
+    return this.http.get<User[]>(`${this.postUrl}/search?user=${query}`, {headers: headers, withCredentials: environment.withCredentials});
+  }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostService } from 'src/app/services/post.service';
 import { User } from 'stream-chat';
@@ -13,7 +12,7 @@ import { User } from 'stream-chat';
 })
 export class NavbarComponent implements OnInit{
 
-searchSubmitted = false  
+searchSubmitted = false
 search: string = ""
 searchResults?: User[]
 noResults = false

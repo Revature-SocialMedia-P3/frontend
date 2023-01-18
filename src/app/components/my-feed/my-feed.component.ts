@@ -36,6 +36,9 @@ export class MyFeedComponent implements OnInit {
           next: (data: Post[]) => {
             console.log(data)
             this.Posts = data;
+            if (this.selectedPost){
+              this.selectedPost = this.Posts.filter((post : Post ) => post.id === this.selectedPost?.id)[0];
+            }
           }, error: err => {
             console.log(err);
           }

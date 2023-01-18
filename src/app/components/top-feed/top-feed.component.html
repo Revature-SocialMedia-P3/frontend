@@ -3,7 +3,7 @@
     <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action bg" aria-current="true" data-bs-toggle="modal" data-bs-target="#exampleModal">
       <div class="d-flex w-100 justify-content-between">
         <div>
-          <strong class="mb-1 me-3"> {{post.game}} >> {{post.time | seconds}}</strong>
+          <strong class="mb-1 me-3"> {{post.game}}  > >   {{post.time | seconds}}</strong>
         </div>
         <small>{{post.date | date : "MM/dd/yy hh:mm"}}</small>
       </div>
@@ -27,14 +27,20 @@
 <div (blur)="hideComments()"  class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div class="modal-dialog">
     <div *ngIf="selectedPost" class="modal-content abg">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5 me-3" id="exampleModalLabel">{{selectedPost.game}}</h1>
-        <div>
-          <p class="m-3"> {{selectedPost.author.username}}</p>
-          <small>{{selectedPost.date | date : "MM/dd/yy hh:mm"}}</small>
+      <div class="modal-header bbg">
+        <div class="d-flex">
+          <img class="" src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{selectedPost.author.username}}" alt="" style="max-height: 50px; width: auto">
+          <p class="ms-3"> {{selectedPost.author.username}}</p>
         </div>
-        <div>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+        <div class="d-flex">
+          <h1 class="modal-title fs-5 me-3" id="exampleModalLabel">{{selectedPost.game}} > > {{selectedPost.time | seconds}}</h1>
+        </div>
+        <div class="clear-fix">
+          <small class="me-5">{{selectedPost.date | date : "MM/dd/yy hh:mm"}}</small>
+          <span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </span>
+        </div>
       </div>
       <div class="modal-body ">
         <p class="text-wrap text-break">{{selectedPost.content}}</p>
@@ -43,7 +49,10 @@
         <div *ngFor="let postComment of selectedPost.postComments" class="list-group m-3">
           <a class="list-group-item bbg" aria-current="false">
             <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1"> {{postComment.commenter.username}}</h5>
+              <div class="d-flex">
+                <img src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{postComment.commenter.username}}" alt="" style="max-height: 50px; width: auto">
+                <h5 class="m-3"> {{postComment.commenter.username}}</h5>
+              </div>
               <small>{{postComment.date | date : "MM/dd/yy hh:mm"}}</small>
             </div>
             <p class="mb-1">{{postComment.content}}</p>

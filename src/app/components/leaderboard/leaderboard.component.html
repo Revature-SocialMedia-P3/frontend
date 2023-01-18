@@ -1,6 +1,6 @@
 <div>
-  <div *ngFor="let field of Posts | keyvalue" class="list-group m-3 w-75">
-    <a (click)="onSelectPost(field.value)" class="list-group-item list-group-item-action bg" aria-current="true" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <div *ngFor="let field of Posts | keyvalue" class="list-group m-3 mt-5 mb-3 w-75">
+    <div class="list-group-item bg">
       <div class="d-flex w-100 justify-content-between">
         <div>
           <strong class="mb-1 me-3"> {{field.key}} >> {{field.value.time | seconds}}</strong>
@@ -19,7 +19,7 @@
         </div>
         <img alt="game img" src="assets/images/{{field.key | removeSpaces}}.png" class="img-thumbnail" style="max-height: 150px">
       </div>
-    </a>
+    </div>
   </div>
 </div>
 

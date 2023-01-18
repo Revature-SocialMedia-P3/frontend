@@ -5,25 +5,30 @@ body {
   height: 100%;
 }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
-  --text-color: #EEE0CB;
-  --bkg-color: #041c32;
-  --btn-txt-color: #EEE0CB;
-  --btn-bg-color: #EEE0CB;
-  --contrast-bg: #0A7199;
-  --contrast-bbg: #0C8DC0;
+  --text-color: rgba(227, 224, 224, 0.8);
+  --bkg-color: rgba(73, 75, 75, 0.99);
+  --btn-txt-color: #71A2B6;
+  --btn-bg-color: #c45d40;
+  --contrast-bg: rgb(48, 14, 98);
+  --contrast-bbg: #7116f2;
   --on-hover: #424446;
   --in-text-input: #EEE0CB;
+  --bg-Img: url('assets/images/Highscoredarkmode.png'); background-size: auto; background-repeat: no-repeat; background-attachment: fixed;
 }
 
 body.non-dark-theme {
-  --text-color: #141417;
-  --bkg-color: #42a9be;
+  --text-color: rgba(20, 20, 23, 0.63);
+  --bkg-color: #e1f1f1;
   --btn-txt-color: #EEE0CB;
   --btn-bg-color: #EEE0CB;
-  --contrast-bg: #0A7199;
-  --contrast-bbg: #0C8DC0;
+  --contrast-bg: #AED4E6;
+  --contrast-bbg: #63bae3 ;
   --on-hover: #424446;
   --in-text-input: #EEE0CB;
+  --bg-Img:  url('assets/images/Highscorelightmode.png'); background-size: auto; background-repeat: no-repeat; background-attachment: fixed;
+}
+.max-height{
+  height: 100%
 }
 
 body {
@@ -48,6 +53,9 @@ button {
 
 .bbg{
   background-color: var(--contrast-bbg);
+}
+.bgImg{
+   background-image: var(--bg-Img);
 }
 
 .bg {

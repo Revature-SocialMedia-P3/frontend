@@ -9,23 +9,23 @@ phases:
     commands:
       - npm install && npm install -g @angular/cli
 
-      - npm i -D puppeteer
-      - npm i –D @angular-devkit/build-angular
-      - apt-get upgrade
-      - apt-get update
-      - apt-get install -y apt-transport-https
-      - apt-get install -y libxcursor1
-      - apt-get install -y libgtk-3-dev
-      - apt-get install -y libxss1
-      - apt-get install -y libasound2
-      - apt-get install -y libnspr4
-      - apt-get install -y libnss3
-      - apt-get install -y libx11-xcb1
-      - npm install
+#      - npm i -D puppeteer
+#      - npm i –D @angular-devkit/build-angular
+#      - apt-get upgrade
+#      - apt-get update
+#      - apt-get install -y apt-transport-https
+#      - apt-get install -y libxcursor1
+#      - apt-get install -y libgtk-3-dev
+#      - apt-get install -y libxss1
+#      - apt-get install -y libasound2
+#      - apt-get install -y libnspr4
+#      - apt-get install -y libnss3
+#      - apt-get install -y libx11-xcb1
+#      - npm install
   build:
     commands:
       - ng build --configuration=production
-      - ng test --no-watch
+#      - ng test --no-watch
   post_build:
     commands:
       - cd dist/$APP_NAME

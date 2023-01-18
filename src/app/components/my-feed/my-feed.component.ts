@@ -3,6 +3,7 @@ import {Post} from "../../models/Post";
 import {AuthService} from "../../services/auth.service";
 import {PostService} from "../../services/post.service";
 import User from "../../models/User";
+import {PostComment} from "../../models/post-comment";
 
 @Component({
   selector: 'app-my-feed',
@@ -18,6 +19,7 @@ export class MyFeedComponent implements OnInit {
   selectedPostId? : number;
   isUserLoggedIn: boolean = true;
   user! : User;
+
   constructor(
     public authService : AuthService,
     private postService : PostService
@@ -32,7 +34,11 @@ export class MyFeedComponent implements OnInit {
       next: () => {
         this.postService.getAllMyPosts(this.user.id!).subscribe({
           next: (data: Post[]) => {
+            console.log(data)
             this.Posts = data;
+            if (this.selectedPost){
+              this.selectedPost = this.Posts.filter((post : Post ) => post.id === this.selectedPost?.id)[0];
+            }
           }, error: err => {
             console.log(err);
           }
@@ -50,9 +56,22 @@ export class MyFeedComponent implements OnInit {
   onSubmitPost(post : Post) {
   this.postService.createPost(post).subscribe({
     next : (data : any) => {
-      console.log(data.body);
+      console.log(data);
       this.postService.changeInPost.next();
     }
   })
+  }
+
+  onSubmitPostComment(postComment : PostComment) {
+    this.postService.createPostComment(postComment).subscribe({
+      next : (data : any) => {
+        console.log(data);
+        this.postService.changeInPost.next();
+      }
+    })
+  }
+
+  hideComments() {
+    this.toggleComment = false;
   }
 }

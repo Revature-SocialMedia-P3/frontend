@@ -13,10 +13,50 @@
       <div class="d-flex w-100 justify-content-between">
         <div class="row">
           <p class="mb-1">{{post.author.username}}</p>
+          <img
+            src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed={{post.author.username}}"
+            alt=""
+            style="max-height: 50px; width: auto"
+          >
           <small class="text-wrap text-break">{{post.content | truncate : 100}}</small>
         </div>
         <img alt="game img" src="assets/images/{{post.game | removeSpaces}}.png" class="img-thumbnail" style="max-height: 150px">
       </div>
     </a>
+  </div>
+</div>
+
+
+<div (blur)="hideComments()"  class="modal modal-xl fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div *ngIf="selectedPost" class="modal-content abg">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5 me-3" id="exampleModalLabel">{{selectedPost.game}}</h1>
+        <div>
+          <p class="m-3"> {{selectedPost.author.username}}</p>
+          <small>{{selectedPost.date | date : "MM/dd/yy hh:mm"}}</small>
+        </div>
+        <div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+      </div>
+      <div class="modal-body ">
+        <p class="text-wrap text-break">{{selectedPost.content}}</p>
+      </div>
+     <div>
+      <div *ngFor="let postComment of selectedPost.postComments" class="list-group m-3">
+         <a class="list-group-item bbg" aria-current="false">
+          <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1"> {{postComment.commenter.username}}</h5>
+             <small>{{postComment.date | date : "MM/dd/yy hh:mm"}}</small>
+           </div>
+           <p class="mb-1">{{postComment.content}}</p>
+          </a>
+        </div>
+        <div class="modal-body">
+          <button *ngIf="isUserLoggedIn && !toggleComment" (click)="toggleComment = !toggleComment" class="btn btn-success">New Comment</button>
+          <app-post-comment *ngIf="toggleComment" [user]="user" [selectedPost]="selectedPost" (postCommentEvent)="onSubmitPostComment($event)"></app-post-comment>
+       </div>
+      </div>
+    </div>
   </div>
 </div>

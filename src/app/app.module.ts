@@ -11,7 +11,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './modules/angular-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { PostComponent } from './components/post-form/post.component';
-import { CommentComponent } from './components/comment-form/comment.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AngularFireModule} from "@angular/fire/compat";
@@ -29,6 +28,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 import { ChatComponent } from './components/chat/chat.component';
 import { SecondsPipe } from './pipes/seconds.pipe';
 import { RemoveSpacesPipe } from './pipes/remove-spaces.pipe';
+import { PostCommentComponent } from './components/post-comment/post-comment.component';
 
 
 initializeApp(environment.firebaseConfigNotification);
@@ -39,7 +39,6 @@ initializeApp(environment.firebaseConfigNotification);
     LoginComponent,
     RegisterComponent,
     PostComponent,
-    CommentComponent,
     UserCardComponent,
     NavbarComponent,
     ResetPasswordComponent,
@@ -52,7 +51,7 @@ initializeApp(environment.firebaseConfigNotification);
     ChatComponent,
     SecondsPipe,
     RemoveSpacesPipe,
-    
+    PostCommentComponent,
   ],
   imports: [
     FormsModule,

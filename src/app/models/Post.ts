@@ -1,6 +1,6 @@
 import User from "./User";
-import {PostComment} from "./post-comment";
 import {Game} from "../enums/game";
+import {PostComment} from "./post-comment";
 
 export interface Post{
 id? : number;
@@ -10,6 +10,5 @@ youtubeURL? : string;
 time : number;
 game : Game;
 content : string;
-
-comments? : PostComment[];
+postComments? : PostComment[];
 }

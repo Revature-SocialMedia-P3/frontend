@@ -10,6 +10,5 @@ youtubeURL? : string;
 time : number;
 game : Game;
 content : string;
-
 postComments? : PostComment[];
 }

@@ -34,6 +34,7 @@ export class MyFeedComponent implements OnInit {
       next: () => {
         this.postService.getAllMyPosts(this.user.id!).subscribe({
           next: (data: Post[]) => {
+            console.log(data)
             this.Posts = data;
           }, error: err => {
             console.log(err);
@@ -52,7 +53,7 @@ export class MyFeedComponent implements OnInit {
   onSubmitPost(post : Post) {
   this.postService.createPost(post).subscribe({
     next : (data : any) => {
-      console.log(data.body);
+      console.log(data);
       this.postService.changeInPost.next();
     }
   })
@@ -61,7 +62,7 @@ export class MyFeedComponent implements OnInit {
   onSubmitPostComment(postComment : PostComment) {
     this.postService.createPostComment(postComment).subscribe({
       next : (data : any) => {
-        console.log(data.body);
+        console.log(data);
         this.postService.changeInPost.next();
       }
     })

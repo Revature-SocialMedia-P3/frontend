@@ -3,6 +3,7 @@ import User from "../../models/User";
 import {Post} from "../../models/Post";
 import {AuthService} from "../../services/auth.service";
 import {PostService} from "../../services/post.service";
+import {PostComment} from "../../models/post-comment";
 
 @Component({
   selector: 'app-leaderboard',
@@ -41,8 +42,5 @@ export class LeaderboardComponent implements OnInit {
     })
   }
 
-  onSelectPost(post: Post) {
-    this.selectedPost = post;
-    this.selectedPostId = post.id;
-  }
+
 }

@@ -22,10 +22,13 @@ body.non-dark-theme {
   --btn-txt-color: #EEE0CB;
   --btn-bg-color: #EEE0CB;
   --contrast-bg: #AED4E6;
-  --contrast-bbg: #AED4E6;
+  --contrast-bbg: #63bae3 ;
   --on-hover: #424446;
   --in-text-input: #EEE0CB;
   --bg-Img:  url('assets/images/Highscorelightmode.png'); background-size: auto; background-repeat: no-repeat; background-attachment: fixed;
+}
+.max-height{
+  height: 100%
 }
 
 body {

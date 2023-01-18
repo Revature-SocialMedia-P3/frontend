@@ -4,8 +4,7 @@ export const environment = {
   baseUrl: "http://highscoreappebs-env.eba-nf46h7px.us-east-2.elasticbeanstalk.com",
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    "Authorization": <string>localStorage.getItem("Authorization"),
+    'Access-Control-Allow-Origin': '*'
   },
   firebaseConfigNotification: {
     apiKey: "AIzaSyDw5x74A-5a15CS2eVm1D3cgUAbldoklOg",

@@ -6,18 +6,15 @@
   <div class="col-xl-9 mt-4">
     <ul class="nav nav-tabs">
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{active : selected === 'my-feed'}" (click)="selected='my-feed'">My Feed</a>
+        <a class="nav-link" [ngClass]="{active : selected === 'my-feed'}" (click)="selected='my-feed'; selectMyFeed()">My Feed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{active : selected === 'top-feed'}" (click)="selected='top-feed'">Top Posts</a>
+        <a class="nav-link" [ngClass]="{active : selected === 'top-feed'}" (click)="selected='top-feed'; selectTop()">Top Posts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" [ngClass]="{active : selected === 'leaderboard'}" (click)="selected='leaderboard'">Leaderboards</a>
+        <a class="nav-link" [ngClass]="{active : selected === 'leaderboard'}" (click)="selected='leaderboard'; selectLeaderboard()">Leaderboards</a>
       </li>
     </ul>
-    <app-my-feed *ngIf="selected==='my-feed'"></app-my-feed>
-    <app-top-feed *ngIf="selected==='top-feed'"></app-top-feed>
-    <app-leaderboard *ngIf="selected==='leaderboard'"></app-leaderboard>
-
+    <app-integrated-feed [(isChangingFeed)]="isChangingFeed" [feed]="selected"></app-integrated-feed>
   </div>
 </div>

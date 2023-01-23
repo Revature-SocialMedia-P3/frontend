@@ -4,7 +4,6 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import {ResetPasswordComponent} from "./components/auth/reset-password/reset-password.component";
 import {SplashComponent} from "./components/splash/splash.component";
-import {MyFeedComponent} from "./components/my-feed/my-feed.component";
 import {HomepageComponent} from "./components/homepage/homepage.component";
 import { ChatComponent } from './components/chat/chat.component';
 

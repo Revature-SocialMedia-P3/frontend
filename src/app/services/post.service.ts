@@ -12,27 +12,53 @@ import User from "../models/User";
 })
 export class PostService {
   postUrl : string = `${environment.baseUrl}/post`;
-  changeInPost: Subject<void> = new BehaviorSubject<void>(undefined);
+  // posts: Post[] = [];
+  changeInPost: Subject<Post[]> = new BehaviorSubject<Post[]>([]);
 
   constructor(
     private http : HttpClient
   ) {}
 
-  getAllMyPosts(id : number) : Observable<Post[]> {
+  getAllMyPosts(id : number) : void {
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
-    return this.http.get<Post[]>(`${this.postUrl}/my-feed/${id}`, {headers: headers, withCredentials: environment.withCredentials});
+    this.http.get<Post[]>(`${this.postUrl}/my-feed/${id}`, {headers: headers, withCredentials: environment.withCredentials}).subscribe({
+      next: (value: any) => {
+        this.changeInPost.next(value as Post[]);
+      }, error: err => {
+        this.changeInPost.error(err);
+      }
+    });
   }
-  getTopPosts() : Observable<Post[]>{
+
+  getTopPosts() : void {
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
-    return this.http.get<Post[]>(`${this.postUrl}/top-feed`, {headers: headers, withCredentials: environment.withCredentials});
+    this.http.get<Post[]>(`${this.postUrl}/top-feed`, {headers: headers, withCredentials: environment.withCredentials}).subscribe({
+      next: (value: any) => {
+        this.changeInPost.next(value as Post[]);
+      }, error: err => {
+        this.changeInPost.error(err);
+      }
+    });
   }
-  getLeaderboard() : Observable<Post[]>{
+
+  getLeaderboard() : void{
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");
-    return this.http.get<Post[]>(`${this.postUrl}/leaderboard`, {headers: headers, withCredentials: environment.withCredentials});
+    this.http.get<Post[]>(`${this.postUrl}/leaderboard`, {headers: headers, withCredentials: environment.withCredentials}).subscribe({
+      next: (value: any) => {
+        let postList: Post[] = [];
+        Object.keys(value).forEach((key: string) => {
+          postList.push(value[key]);
+        })
+        this.changeInPost.next(postList);
+      }, error: err => {
+        this.changeInPost.error(err);
+      }
+    });
   }
+
   createPost(post : Post)  {
     let headers: any = environment.headers;
     headers["Authorization"]= <string>localStorage.getItem("Authorization");

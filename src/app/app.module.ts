@@ -21,13 +21,11 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { SplashComponent } from './components/splash/splash.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { MyFeedComponent } from './components/my-feed/my-feed.component';
-import { TopFeedComponent } from './components/top-feed/top-feed.component';
-import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { SecondsPipe } from './pipes/seconds.pipe';
 import { RemoveSpacesPipe } from './pipes/remove-spaces.pipe';
 import { PostCommentComponent } from './components/post-comment/post-comment.component';
+import { IntegratedFeedComponent } from './components/integrated-feed/integrated-feed.component';
 
 
 initializeApp(environment.firebaseConfigNotification);
@@ -44,13 +42,11 @@ initializeApp(environment.firebaseConfigNotification);
     SplashComponent,
     TruncatePipe,
     HomepageComponent,
-    MyFeedComponent,
-    TopFeedComponent,
-    LeaderboardComponent,
     ChatComponent,
     SecondsPipe,
     RemoveSpacesPipe,
     PostCommentComponent,
+    IntegratedFeedComponent,
   ],
   imports: [
     FormsModule,
